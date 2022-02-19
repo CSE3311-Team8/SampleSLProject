@@ -1,17 +1,21 @@
+import React from "react";
+import styles from './index.css';
+
 const ProjectList = (props) => {
 
+  //receives props passed in Home component 
   const items = props.items;
-  const title = props.title;
-  console.log(props.items)
+  
+  
+
   return ( 
-
-
-    <div className="project-list">
-      <h2>{title}</h2>
+    <div className="list">
       {items.map((item)=>(
-        <div className="project-preview" key ={item.id}>
-          <h2>{item.repo_name} {item.owner_name}</h2>
-          <p>{item.Description}</p>
+        <div className="preview" key ={item.id}>
+          <a  href={item.project_url}>
+            {item.Description}
+          </a>
+          <p>Owner: {item.owner_name}</p>
         </div>
       ))}
     </div>

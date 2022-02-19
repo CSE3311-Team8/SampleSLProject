@@ -1,42 +1,24 @@
 import React from "react";
-import { useEffect } from "react";
-import { useCallback } from "react";
-import ReactTable from "react-table";  
-import { useState } from "react";
 import ProjectList from "./ProjectList";
-
-//import {Dropdown} from 'semantic-ui-react'
-
-
+import useFetch from "./useFetch";
 
 const Home = () => {
 
+  //main data request, needs to updated for searching
+  //currently displaying all contents of table 
+  const {data, isLoading} = useFetch('http://localhost:8000/items')
   
-///////////////////////////////////////////
+  //title for found searches
+  const title = "Found projects: "
 
-  const [items, setItems] = useState([]);
-
-  const fetchJSONDataFrom = useCallback(async (path) => {
-    const response = await fetch(path, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    });
-    const data = await response.json();
-    setItems(data);
-  }, []);
-
-  useEffect(() => {
-    fetchJSONDataFrom("GitHub_Projects.json");
-  }, [fetchJSONDataFrom]);
-
-//////////////////////////////////////////////
+  //the code below calls the ProjecList component and passes the data requested above as a prop
   return ( 
 
     <div className="home">
-      
-     <ProjectList items ={items} title="Results"/>
+      <h2>{title}</h2>
+
+        {isLoading && <div>Searching...</div> } 
+        <ProjectList  items ={data}/>
     
     </div>
    );

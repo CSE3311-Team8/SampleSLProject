@@ -1,3 +1,11 @@
+
+/* 2/19/2022 Carlos Uresti
+
+  To execute this code, go to a terminal, make sure you are in the correct directory (simuling-search) and type `npm install`.
+  This will install all the necessary dependencies for the project. After `npm install` is done, type `npm run start` to launch the project. If it does not automatically open in browswer, open [http://localhost:3000] to view it in your browser. The project will be blank as there is no data loaded yet. Next, open a new terminal and type `npx json-server --watch data/GitHub_Projects.json --port 8000`and hit enter. This will open json server with the data loaded in 'simulink-search/data' folder. Using this method, we can emulate http requests to an API. It will make it more portable when it comes time to request information from a real API. 
+*/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

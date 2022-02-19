@@ -10,42 +10,51 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
+.search input {
  
-  color: #f1356d;
+
+  color: #345beb;
+  
 }
-.navbar .links {
-  margin-left: auto;
+.home {
+  margin-top: auto;
 }
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
+nav.navbar h2 {
+  padding: 75px;
+  margin-top: 50px;
+  align-items: center auto;
+  font-size: 40px;
+  color:#345beb;
+  
+ 
 }
-.navbar a:hover {
-  color: #f1356d;
-}
+
 .content {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: auto;
+ 
+  padding: 50px;
 }
-.itemView{
-  padding: 8px 12px;
-  margin: 15px 0;
-  border-bottom: 1px solid #fafafa;
-}
-.itemView:hover{
+
+.content:hover{
 
   box-shadow: 1px 3px 5px rgba(0,0,0,0,1)
 }
-.itemView h2{
+.content a{
 
-  font-size: 20px;
+  margin-top: 25px;
+  font-size: 16px;
+  color:#345beb;
+  margin-bottom: 8px;
+
+}
+.content h2{
+
+  margin-top: 0px;
+  font-size: 16px;
   color:#345beb;
   margin-bottom: 8px;
 
