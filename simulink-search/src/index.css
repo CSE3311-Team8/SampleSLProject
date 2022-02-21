@@ -6,15 +6,16 @@
   font-family: "Quicksand";
   color: #333;
 }
-.navbar {
+
+.App {
   padding: 20px;
-  display: flex;
-  align-items: center;
-  max-width: 800px;
+ 
+  
+  max-width: auto;
   margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2
 }
-.search input {
+.App input {
  
 
   color: #345beb;
@@ -23,19 +24,26 @@
 .home {
   margin-top: auto;
 }
-nav.navbar h2 {
-  padding: 75px;
-  margin-top: 50px;
-  align-items: center auto;
-  font-size: 40px;
+.App h2 {
+  padding: 100px;
+  margin-top: 0px;
+  align-items: center;
+  margin-left: 50px;
+  font-size: 60px;
   color:#345beb;
   
  
 }
+.search {
+
+  align-items: center;
+  margin-left: 500px;
+}
+
 
 .content {
   max-width: auto;
- 
+  align-items: left;
   padding: 50px;
 }
 
