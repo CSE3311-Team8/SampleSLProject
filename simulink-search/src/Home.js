@@ -15,6 +15,7 @@ const Home = (props) => {
 
   
   //the code below calls the ProjecList component and passes the data requested above as a prop
+  //new comment for commi9t
   return ( 
     
     <div className="home">
