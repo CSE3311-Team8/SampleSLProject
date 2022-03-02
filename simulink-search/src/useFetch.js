@@ -21,11 +21,10 @@ const useFetch = (url) =>{
   }, []);
 
     //will execute function when data is updated
-    useEffect(() => {//insert local parameters(replace url with fetchjsonlocal **look-up correct declaration syntax)
+    useEffect(() => {
       fetchJSONDataFrom(url);
     }, [url, fetchJSONDataFrom]);
-
-
+    
     return{data, isLoading}
 }
   

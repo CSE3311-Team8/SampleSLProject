@@ -2,17 +2,17 @@
 
 /* base styles */
 * {
-  margin: 0;
+  
   font-family: "Quicksand";
   color: #333;
 }
 
 .App {
-  padding: 20px;
+  
  
   
   max-width: auto;
-  margin: 0 auto;
+ 
   border-bottom: 1px solid #f2f2f2
 }
 .App input {
@@ -22,13 +22,13 @@
   
 }
 .home {
-  margin-top: auto;
+
 }
 .App h2 {
-  padding: 100px;
-  margin-top: 0px;
+  offset-distance: 150px;
+  
   align-items: center;
-  margin-left: 50px;
+ 
   font-size: 60px;
   color:#345beb;
   
@@ -36,15 +36,15 @@
 }
 .search {
 
-  align-items: center;
-  margin-left: 500px;
+  align-items: right;
+  
 }
 
 
 .content {
   max-width: auto;
   align-items: left;
-  padding: 50px;
+
 }
 
 .content:hover{
@@ -53,17 +53,24 @@
 }
 .content a{
 
-  margin-top: 25px;
+
   font-size: 16px;
   color:#345beb;
-  margin-bottom: 8px;
 
+
+}
+tr.same-col-widths th {
+  width: 20%;
+}
+td.url {
+  text-decoration: underline;
 }
 .content h2{
 
-  margin-top: 0px;
+  
   font-size: 16px;
   color:#345beb;
-  margin-bottom: 8px;
+  
+
 
 }

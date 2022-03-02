@@ -1,47 +1,76 @@
 import React from "react";
-import {Link} from 'react-router-dom'
 import useFetch from "./useFetch";
+import Table from "react-bootstrap/Table"
+
 const ProjectList = (props) => {
-
-  const {data, isLoading} = useFetch('http://localhost:8000/items')
-  
+  const {data} = useFetch('http://localhost:8000/items')
   const items = props.items;
-  console.log(items)
-  const defaultHome = "Happy Searching!"
-  //receives props passed in Home component 
-  
+  //console.log(items)
   return ( 
-
     <div className="search-items">
-
       <div className="list">
         { 
           data.filter((phrase)=>{
-
             if(items === "")
             {
-              return ;
+              return "";
             }
             else if(phrase.Description.toLowerCase().includes(items.toLocaleLowerCase())) 
             {
               return phrase;
             }
-
-          }).map((phrase)=>(
+            return "";
+          }).map((phrase)=>{   
             
-            <div className="preview" key ={phrase.id}>
-              <a  href={phrase.project_url}>
-                {phrase.Description}
-              </a>
-              <p>Owner: {phrase.owner_name}</p>
-            </div>
+          
+                   
+            return (
+              /* all columns set to 9% total width */
+              
+              <div className="preview" key ={phrase.id}> 
+                <Table className="table table-fixed
+                table-sm same-col-widths">
+                  <thead>
 
-          ))    
+                    <tr className="same-col-widths">
+                      
+                      <th>Owner Name</th>
+                      <th>Repository</th>
+                      <th>Created On</th>
+                      <th>Updated On</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      <tr>
+                        
+                        <td className="name">{phrase.owner_name}</td>
+                        <td className="url">
+                          <a  href={phrase.project_url}>
+                          {phrase.repo_name}
+                          </a>
+                        </td>
+                        <td className="date-created">{phrase.updated_at}</td>
+                        <td className="date-updated">{phrase.created_at}</td>
+                        
+                      </tr>
+                      
+                    }
+                    
+                  </tbody>
+                </Table> 
+
+                <p>{phrase.Description}</p>
+
+            </div>
+              
+              
+            )
+          })
         }
       </div>
     </div>  
-   );
-
+  );
 }
  
 export default ProjectList;
