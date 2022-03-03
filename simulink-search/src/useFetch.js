@@ -8,6 +8,8 @@ const useFetch = (url) =>{
   const [data, setItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  //this function will retrieve data from the data folder which 
+  //contains 2 json files, currently only using GitHub_Projects
   const fetchJSONDataFrom = useCallback(async (url) => {
     const response = await fetch(url, {
       headers: {
@@ -26,6 +28,7 @@ const useFetch = (url) =>{
     }, [url, fetchJSONDataFrom]);
     
     return{data, isLoading}
+
 }
   
 

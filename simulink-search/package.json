@@ -2,11 +2,13 @@
   "name": "search-tool",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.1.3",
+    "express": "^4.17.3",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-bootstrap-dropdown-menu": "^1.1.23",
@@ -40,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "/* 2/19/2022 Carlos Uresti",
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

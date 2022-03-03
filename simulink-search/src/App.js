@@ -3,17 +3,19 @@ import React, { useState } from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
 import Home from './Home';
 import Filter from './Filter';
-import Details from './Details';
+
 
 function App() {
 
-  //hook for
+  //hook for search word
   const [searchWord, setSearchWord] = useState("");
 
+  //search bar title
   const title = "Simulink Search"
-  
-  
-  //Each Route below is a path to home page and filter page, respectively
+
+  //search bar implemented in App.js so it persists on page, could be done with component
+  //home route returns regular search bar
+  //filter switches to the filtering page
   return (
      
     <Router>
@@ -42,7 +44,6 @@ function App() {
           <Routes>
             <Route exact path="/" element ={<Home string = {searchWord}/>}/>
             <Route exact path="/filter" element = {<Filter/>}/>
-            <Route exact path="/items/:id" element = {<Details/>}/>a
           </Routes>
           
         </div>
