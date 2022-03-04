@@ -1,6 +1,10 @@
 import React from "react";
 import ProjectList from "./ProjectList";
 import useFetch from "./useFetch";
+import NumericInput from 'react-numeric-input';
+
+
+
 
 //Hosts the lists of projects matching search word
 const Home = (props) => {
