@@ -9,6 +9,10 @@ const ProjectList = (props) => {
   const {data} = useFetch('http://localhost:8000/items');
   const items = props.items;
   //console.log(data);
+  function formatDate(string){
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(string).toLocaleDateString([],options);
+}
 
  
   return ( 
@@ -55,8 +59,8 @@ const ProjectList = (props) => {
                           link
                           </a>
                         </td>
-                        <td  className="date-created">{phrase.updated_at}</td>
-                        <td  className="date-updated">{phrase.created_at}</td>
+                        <td  className="date-created">{new Date(phrase.updated_at).toLocaleDateString()}</td>
+                        <td  className="date-updated">{new Date(phrase.created_at).toLocaleDateString()}</td>
                       </tr>
                     }
                   </tbody>
