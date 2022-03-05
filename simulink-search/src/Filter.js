@@ -4,13 +4,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-date-picker';
-
 import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
-
-
-
-
 
 //will contain the login for searching with different field parameters
 const Filter = () => {
@@ -83,7 +78,7 @@ const Filter = () => {
           <DatePicker onChange={onChange1} value={value} />
         </Col>
         <Col md='4' className='col-example'>
-          <p>License</p>
+          <p>Language</p>
           <DropdownButton id="dropdown-item-button" title="Select License">
             <Dropdown.ItemText></Dropdown.ItemText>
             <Dropdown.Item as="button">C++</Dropdown.Item>
@@ -105,9 +100,9 @@ const Filter = () => {
           <p>License</p>
           <DropdownButton id="dropdown-item-button" title="Select License">
             <Dropdown.ItemText></Dropdown.ItemText>
-            <Dropdown.Item as="button">C++</Dropdown.Item>
-            <Dropdown.Item as="button">Java</Dropdown.Item>
-            <Dropdown.Item as="button">C#</Dropdown.Item>
+            <Dropdown.Item as="button">MIT</Dropdown.Item>
+            <Dropdown.Item as="button">GNU</Dropdown.Item>
+            <Dropdown.Item as="button">BSD</Dropdown.Item>
           </DropdownButton>
         </Col>
       </Row>
@@ -131,7 +126,7 @@ const Filter = () => {
           <NumericInput className="form-control"/>
         </Col>
         <Col md='4' className='col-example'>
-          <button className='search-button' style={{ color: '#345beb', height: "35px"}}>Search
+          <button className='search-button' style={{ color: '#345beb', height: "35px"}}>Filtered Search
           </button>
         </Col>
       </Row>

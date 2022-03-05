@@ -18,11 +18,8 @@ function App() {
   //home route returns regular search bar
   //filter switches to the filtering page
 
-
   /*Table headers must be set to 20%*/
   /*Give bottom margin to tables mapped in regular search*/
-  
-
 
   return (
      
@@ -31,13 +28,7 @@ function App() {
         <Row className="search">
           <Col md='12' className="search-bar">
             <h2>{title}</h2>
-
             <input className = "searchText" type="text" placeholder='Type your query here...' style={{}} onChange={(e)=>{ setSearchWord(e.target.value);}}/>
-
-              
-
-          
-
             <Link to = {'/'}>
               <button className='search-button' style={{ color: '#345beb'}}>Search
               </button>
@@ -47,17 +38,15 @@ function App() {
               <button className='filter' style={{ color: '#345beb'}}>Filter</button>
             </Link>
           </Col>  
-
         </Row>
-        <div className="row">
-          <div className="col-lg-12"> 
+        <Row className="items">
+          <Col className="item-list" md='12'> 
             <Routes>
               <Route exact path="/" element ={<Home string = {searchWord}/>}/>
               <Route exact path="/filter" element = {<Filter/>}/>
             </Routes>
-          </div>   
-          
-        </div>
+          </Col>   
+        </Row>
       </Container>  
       
     </Router>

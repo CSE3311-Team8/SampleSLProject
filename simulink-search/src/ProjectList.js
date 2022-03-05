@@ -30,12 +30,13 @@ const ProjectList = (props) => {
             return (
               /* all columns set to 20% total width */
               <div className="preview" key ={phrase.id}> 
-                <Table className="table table-fixed
+                <Table  className="table table-fixed
                 table-sm same-col-widths">
                   <thead>
                     <tr className="same-col-widths">
                       <th>Owner Name</th>
                       <th>Repository</th>
+                      <th>Home Page</th>
                       <th>Created On</th>
                       <th>Updated On</th>
                     </tr>
@@ -44,13 +45,18 @@ const ProjectList = (props) => {
                     {
                       <tr>
                         <td className="name">{phrase.owner_name}</td>
-                        <td className="url">
+                        <td  className="url">
                           <a  href={phrase.project_url}>
                           {phrase.repo_name}
                           </a>
                         </td>
-                        <td className="date-created">{phrase.updated_at}</td>
-                        <td className="date-updated">{phrase.created_at}</td>
+                        <td  className="url">
+                          <a  href={phrase.homepage_url}>
+                          link
+                          </a>
+                        </td>
+                        <td  className="date-created">{phrase.updated_at}</td>
+                        <td  className="date-updated">{phrase.created_at}</td>
                       </tr>
                     }
                   </tbody>
