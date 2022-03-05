@@ -1,10 +1,10 @@
 import React from "react";
 import{ useState } from "react";
-import Table from "react-bootstrap/Table";
+import { Col, Container, Row } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-date-picker';
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+
 import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
 
@@ -72,17 +72,17 @@ const Filter = () => {
   //this is for testings purposes
   return ( 
 
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md='4' className='col-example'>
+    <Container>
+      <Row className="date">
+        <Col md='4' className='col-example'>
           <p>Created At</p>
           <DatePicker onChange={onChange} value={value} />
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
-          <p>Created At</p>
+        </Col>
+        <Col md='4' className='col-example'>
+          <p>Updated At</p>
           <DatePicker onChange={onChange1} value={value} />
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <p>License</p>
           <DropdownButton id="dropdown-item-button" title="Select License">
             <Dropdown.ItemText></Dropdown.ItemText>
@@ -90,18 +90,18 @@ const Filter = () => {
             <Dropdown.Item as="button">Java</Dropdown.Item>
             <Dropdown.Item as="button">C#</Dropdown.Item>
           </DropdownButton>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+      </Row>
+      <Row>
+        <Col md='4' className='col-example'>
           <p>Forks Count</p>
           <NumericInput className="form-control"/> 
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <p>Open Issues Count</p>
           <NumericInput className="form-control"/>
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <p>License</p>
           <DropdownButton id="dropdown-item-button" title="Select License">
             <Dropdown.ItemText></Dropdown.ItemText>
@@ -109,33 +109,33 @@ const Filter = () => {
             <Dropdown.Item as="button">Java</Dropdown.Item>
             <Dropdown.Item as="button">C#</Dropdown.Item>
           </DropdownButton>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+      </Row>
+      <Row>
+        <Col md='4' className='col-example'>
           <p>Stargazers Count</p>
           <NumericInput className="form-control"/>
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <p>Number of Comments</p>
           <NumericInput className="form-control"/>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+      </Row>
+      <Row>
+        <Col md='4' className='col-example'>
           <p>Watchers Count</p>
           <NumericInput className="form-control"/>
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <p>Number of Ratings</p>
           <NumericInput className="form-control"/>
-        </MDBCol>
-        <MDBCol md='4' className='col-example'>
+        </Col>
+        <Col md='4' className='col-example'>
           <button className='search-button' style={{ color: '#345beb', height: "35px"}}>Search
           </button>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+        </Col>
+      </Row>
+    </Container>
 
   );
 

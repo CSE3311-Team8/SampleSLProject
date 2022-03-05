@@ -8,70 +8,42 @@
 }
 
 .App {
-  
- 
   align-items: center;
   max-width: auto;
- 
   border-bottom: 1px solid #f2f2f2
 }
-.App input {
- 
 
+.App input {
+  align-items: center;
+  margin-left: 10%;
+  font-size: "16px";  
+  width:60%; 
   color: #345beb;
-  
 }
 
 .App h2 {
-  offset-distance: 150px;
-  
-  align-items: center;
- 
+  margin-left: 25%;
   font-size: 60px;
   color:#345beb;
-  
+}
+
+.preview p{
  
+  font-size: 16px;
+  color:black;
 }
-.search {
 
-  align-items: right;
-  margin-left: 25%;
-  margin-top: 200px;
-  margin-bottom: 100px;
+div.search-bar.col-md-12{
+
+  margin-top: 20%;
+  margin-bottom: 5%;
+}
+div.col-example.col-md-4{
   
+  margin-bottom: 3%;
 }
 
 
-.p {
-  max-width: auto;
-  align-items: left;
-  font-size: 16px;
-  color:#345beb;
-
-}
-
-.content.p:hover{
-  font-size: 16px;
-  color:#345beb;
-  box-shadow: 1px 3px 5px rgba(0,0,0,0,1)
-}
-.content a{
-
-
-  font-size: 16px;
-  color:#345beb;
-
-
-}
-tr.same-col-widths th {
-  width: 20%;
-}
 td.url {
   text-decoration: underline;
-}
-.content h2{
-
-  font-size: 16px;
-  color:#345beb;
-  
 }
