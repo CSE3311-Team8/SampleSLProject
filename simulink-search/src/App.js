@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
-import Home from './Home';
+import Home from './views/Home';
 import { Col, Container, Row } from 'react-bootstrap';
-import Filter from './Filter';
+import Filter from './views/Filter';
 
 
 function App() {

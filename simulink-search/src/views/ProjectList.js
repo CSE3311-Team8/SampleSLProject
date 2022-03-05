@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "./useFetch";
+import useFetch from "../controllers/useFetch";
 import Table from "react-bootstrap/Table"
 
 //list of projects is generated using the prop received  
@@ -9,10 +9,7 @@ const ProjectList = (props) => {
   const {data} = useFetch('http://localhost:8000/items');
   const items = props.items;
   //console.log(data);
-  function formatDate(string){
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(string).toLocaleDateString([],options);
-}
+
 
  
   return ( 

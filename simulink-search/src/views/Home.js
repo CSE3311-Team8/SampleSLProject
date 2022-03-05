@@ -1,9 +1,6 @@
 import React from "react";
 import ProjectList from "./ProjectList";
-import useFetch from "./useFetch";
-import NumericInput from 'react-numeric-input';
-
-
+import useFetch from "../controllers/useFetch";
 
 
 //Hosts the lists of projects matching search word
