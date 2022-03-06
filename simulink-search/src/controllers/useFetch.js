@@ -6,6 +6,7 @@ import { useEffect } from "react";
 const useFetch = (url) =>{
 
   const [data, setItems] = useState([]);
+  
   const [isLoading, setLoading] = useState(true);
 
   //this function will retrieve data from the data folder which 
@@ -24,6 +25,7 @@ const useFetch = (url) =>{
 
     //will execute function when data is updated
     useEffect(() => {
+      let isCancelled = false;
       fetchJSONDataFrom(url);
     }, [url, fetchJSONDataFrom]);
     
