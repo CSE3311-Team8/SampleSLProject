@@ -1,12 +1,14 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+//import useFetch from "./useFetch";
+//import useFetch from "useFetch"
 import useFetch from "./useFetch";
 const ProjectList = (props) => {
 
   const {data, isLoading} = useFetch('http://localhost:8000/items')
   
   const items = props.items;
-  console.log(items)
+  console.log(data)
   const defaultHome = "Happy Searching!"
   //receives props passed in Home component 
   
