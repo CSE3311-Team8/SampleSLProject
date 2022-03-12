@@ -23,7 +23,8 @@
 .preview p{
   font-size: 16px;
   color:black;
-  margin-bottom: 8%;
+  margin-top: 1%;
+  margin-bottom: 4%;
 }
 
 
@@ -104,4 +105,10 @@ div.description.row{
 td.description{
   margin-top: 2%;
 }
+
+div.filtered-search.col-md-4{
+
+  text-align: right;
+}
+
   

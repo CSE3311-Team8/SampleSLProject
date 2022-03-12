@@ -31,6 +31,8 @@ const Home = (props) => {
         return p.content.toLowerCase().match(word.toLowerCase());
       }
 
+      return "";
+
   });
   
   //the prop "word" comes from search bar and will be 

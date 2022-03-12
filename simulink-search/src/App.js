@@ -59,14 +59,14 @@ function App() {
             </DropdownButton>
           </Col>
           <Col md='10' className="search-bar">
-            <input className = "searchText" type="text" placeholder='Type your query here...'/>
+            <input className = "searchText" type="text" placeholder='Type your search here...'/>
             <Link to = {'/'}>
-              <Button className='search-button' variant="contained" size ='large'onClick={handleClick} >
+              <Button className='search-button' variant="contained" size ='large'style={{marginLeft : '3%'}} onClick={handleClick} >
                 Search
               </Button>
             </Link>
             <Link to = {'/filter'}>
-              <Button className='search-button' variant="contained" size ='large'  style={{marginLeft : '1%'}}>
+              <Button className='filter-button' variant="contained" size ='large'  style={{marginLeft : '1%'}}>
                 Filter
               </Button>
             </Link>

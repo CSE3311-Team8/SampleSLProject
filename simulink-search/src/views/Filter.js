@@ -140,7 +140,7 @@ const Filter = () => {
           <p>Number of Ratings</p>
           <NumericInput className="form-control"/>
         </Col>
-        <Col md='4' className='col-example'>
+        <Col md='4' className='filtered-search'>
           <Button className='search-button' variant="contained" size ='large' onClick={sendIt}>
             Filtered Search
           </Button> 

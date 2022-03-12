@@ -1,8 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import { useState} from "react";
-import { Row, Col } from "react-bootstrap";
-
 
 //list of projects is generated using the prop received  
 const ProjectList = (props) => {
@@ -10,7 +8,6 @@ const ProjectList = (props) => {
   
   const data = props.items;
   const database = props.repository;
-  const check = props.word;
   //console.log(database);
   let Visible = visible;
 
