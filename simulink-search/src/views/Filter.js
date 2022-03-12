@@ -5,7 +5,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-date-picker';
 import useFetch from "../controllers/useFetch";
-import Home from "./Home";
+import Home from "../controllers/HomeController";
+import { Button } from '@mui/material';
 import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
 
@@ -13,7 +14,7 @@ NumericInput.style.input.color = 'blue';
 //will contain the login for searching with different field parameters
 const Filter = () => {
 
-  const {isLoading, data} = useFetch('http://localhost:8000/items')
+  const {isLoading, datas} = useFetch('http://localhost:8000/items')
 
   //const {data} = useFetch('http://localhost:8000/items');
   //default value for each select drop-down menu
@@ -48,7 +49,7 @@ const Filter = () => {
     console.log(watchersCount);
   };
   //console.log(data);
-  const filteredItems = data.filter( p =>{
+  const filteredItems = datas.filter( p =>{
     
     if(forksCount === 0)
     {
@@ -58,7 +59,7 @@ const Filter = () => {
     }
     else 
     {
-      const word = "b";
+                                     
       console.log(toString(p.forks_count).match(toString(forksCount)));
       return toString(p.forks_count).match(toString(forksCount));
       
@@ -77,14 +78,10 @@ const Filter = () => {
 
     );
   }
- 
-
-
   //logic for displaying the drowp-down menus
   //will be updated to fit mock up display
-  //this is for testings purposes
+  //all fields below will be combined into a single data request
   return ( 
-
     <Container>
       <Row className="date">
         <Col md='4' className='col-example'>
@@ -144,17 +141,13 @@ const Filter = () => {
           <NumericInput className="form-control"/>
         </Col>
         <Col md='4' className='col-example'>
-         
-            <button className='search-button' style={{ color: '#345beb', height: "35px"}} onClick={sendIt}>Filtered Search
-              </button>
-        
-         
+          <Button className='search-button' variant="contained" size ='large' onClick={sendIt}>
+            Filtered Search
+          </Button> 
         </Col>
       </Row>
     </Container>
-
   );
-
 }
  
 export default Filter;

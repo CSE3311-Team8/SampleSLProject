@@ -13,8 +13,11 @@
 }
 
 .App h2 {
+  margin-top: 15%;
+  text-align: center;
   font-size: 60px;
   color:#345beb;
+  margin-bottom: 5%;
 }
 
 .preview p{
@@ -23,11 +26,8 @@
   margin-bottom: 8%;
 }
 
-div.search-bar.col-md-12{
-  text-align: center;
-  margin-top: 20%;
-  margin-bottom: 5%;
-}
+
+
 div.col-example.col-md-4{
   
   text-align: center;
@@ -51,15 +51,27 @@ td.date-updated {
   font-size: 16px;
   color:#345beb;
 }
+
 td.name {
   font-weight: bold;
   font-size: 16px;
   color:#345beb;
 }
-
-.preview th{
+div.search-bar.col-md-10{
+  text-align: left;
+}
+th.header{
 
   width: 20%;
+}
+div.preview{
+
+  margin-bottom: 4%;
+}
+
+div.date.row{
+  margin-top: 5%;
+  
 }
 
 button.loader {
@@ -67,3 +79,29 @@ button.loader {
   margin-bottom: 10%;
 }
 
+div.dropdown{
+
+  text-align: right;
+}
+div.dropdown.row{
+  text-align: right;
+}
+
+div.search.row{
+  margin-bottom: 5%;
+}
+
+Table {
+  border: 2px solid #345beb;
+  width: auto;
+  height: auto;
+}
+
+div.description.row{
+  width: auto;
+}
+
+td.description{
+  margin-top: 2%;
+}
+  
