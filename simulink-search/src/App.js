@@ -16,27 +16,18 @@ function App() {
   const [searchWord, setSearchWord] = useState("");
   const [repository, setRepository] = useState("Select Repo Type");
   const [repo, setRepo] = useState("");
- 
-  
-
   //search bar title
   const header = "Simulink Search"
   const handleSelect=(e)=>{
     //every time repository changes everything has to change
-    
     //document.getElementsByTagName("input")[0].value = "";
     setRepository(e);
-    
   }
   
   const handleClick=()=>{
-
-    
     var id=document.getElementsByTagName("input")[0];
     setSearchWord(id.value);
     setRepo(repository);
-  
-    
   }
   //search bar implemented in App.js so it persists on page, could be done with component
   //home route returns regular search bar
@@ -46,7 +37,6 @@ function App() {
   /*Give bottom margin to tables mapped in regular search*/
  
   return (
-     
     <Router>
       <Container className="App">
       <h2>{header}</h2>
@@ -84,5 +74,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

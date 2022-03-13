@@ -21,10 +21,17 @@
 }
 
 .preview p{
-  font-size: 16px;
-  color:black;
+  font-size: 18px;
+  
+  color:#337ab7;
   margin-top: 1%;
   margin-bottom: 4%;
+}
+
+.preview h1{
+  font-size: 16px;
+  color:#3633FF;
+  font-weight: bold;
 }
 
 
@@ -45,29 +52,31 @@ td.url {
 td.date-created {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color:#337ab7;
 }
 td.date-updated {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color:#337ab7;
 }
 
 td.name {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color:#337ab7;
 }
 div.search-bar.col-md-10{
   text-align: left;
 }
 th.header{
-
+  font-weight: bold;
+  font-size: 16px;
+  color:#3633FF;
   width: 20%;
 }
 div.preview{
 
-  margin-bottom: 4%;
+  margin-bottom: 6%;
 }
 
 div.date.row{
@@ -98,6 +107,8 @@ Table {
   height: auto;
 }
 
+
+
 div.description.row{
   width: auto;
 }
@@ -111,4 +122,8 @@ div.filtered-search.col-md-4{
   text-align: right;
 }
 
-  
+td.model-files{
+  overflow: hidden; 
+  word-wrap: break-word;
+}
+

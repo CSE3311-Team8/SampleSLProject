@@ -10,26 +10,22 @@ import { Button } from '@mui/material';
 import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
 
-
 //will contain the login for searching with different field parameters
 const Filter = () => {
 
   const {isLoading, datas} = useFetch('http://localhost:8000/items')
-
   //const {data} = useFetch('http://localhost:8000/items');
   //default value for each select drop-down menu
   //all this login can be combine into one component
   //to minimize code lenght, the cod below was created to
   //get a version of the filter page working
 
-  
   //hook for selected value
   //updates return value for each drop down menu
   const [forksCount, setValue] = useState(0);
   const [openIssuesCount, setValue1] = useState(0);
   const [starGazersCount, setValue2] = useState(0);
   const [watchersCount, setValue3] = useState(0);
-
 
   //these functions handle the what happens when new value is selected from menu
   function Change (value) {
@@ -53,29 +49,22 @@ const Filter = () => {
     
     if(forksCount === 0)
     {
-     
-       
       return 0;
     }
     else 
-    {
-                                     
+    {                          
       console.log(toString(p.forks_count).match(toString(forksCount)));
       return toString(p.forks_count).match(toString(forksCount));
-      
     }
-    
-    });
+  });
   
   const sendIt =()=>{
 
     return(
-
       <div className="filter">
         {isLoading && <div>Searching...</div> } 
         <Home  items ={filteredItems} />
       </div>
-
     );
   }
   //logic for displaying the drowp-down menus
@@ -94,7 +83,7 @@ const Filter = () => {
         </Col>
         <Col md='4' className='col-example'>
           <p>Language</p>
-          <DropdownButton id="dropdown-item-button" title="Select License">
+          <DropdownButton id="dropdown-item-button" title="Select Language">
             <Dropdown.ItemText></Dropdown.ItemText>
             <Dropdown.Item as="button">C++</Dropdown.Item>
             <Dropdown.Item as="button">Java</Dropdown.Item>
