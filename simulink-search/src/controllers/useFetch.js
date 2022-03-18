@@ -10,7 +10,7 @@ const useFetch = (repository, word) =>{
   
   //will execute function when data is updated
   useEffect(async() => {
-
+    console.log(repository);
     setLoading(false);
     if(repository === 'GitHub')
     {
@@ -54,9 +54,9 @@ const useFetch = (repository, word) =>{
       }finally{
         //setLoading(false)
       }
-    }else if(repository === 'Select Repo Type') 
+    }else if(repository === 'TYPE') 
     {
-      alert('Select repository to begin search...');
+      alert('Select repository type to begin search...');
     }
   }, [word, repository]);
   

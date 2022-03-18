@@ -23,14 +23,14 @@
 .preview p{
   font-size: 18px;
   
-  color:#337ab7;
+  color:#3633FF;
   margin-top: 1%;
   margin-bottom: 4%;
 }
 
 .preview h1{
   font-size: 16px;
-  color:#3633FF;
+  color:#337ab7;
   font-weight: bold;
 }
 
@@ -52,26 +52,27 @@ td.url {
 td.date-created {
   font-weight: bold;
   font-size: 16px;
-  color:#337ab7;
+  color:#345beb;
 }
 td.date-updated {
   font-weight: bold;
   font-size: 16px;
-  color:#337ab7;
+  color:#345beb;
 }
 
 td.name {
   font-weight: bold;
   font-size: 16px;
-  color:#337ab7;
+  color:#345beb;
 }
-div.search-bar.col-md-10{
+div.search-bar.col-md-11{
   text-align: left;
 }
 th.header{
   font-weight: bold;
   font-size: 16px;
-  color:#3633FF;
+  color:#337ab7;
+
   width: 20%;
 }
 div.preview{
@@ -91,9 +92,6 @@ button.loader {
 
 div.dropdown{
 
-  text-align: right;
-}
-div.dropdown.row{
   text-align: right;
 }
 
@@ -125,5 +123,14 @@ div.filtered-search.col-md-4{
 td.model-files{
   overflow: hidden; 
   word-wrap: break-word;
+}
+
+div.repositories.col-md-11{
+  text-align: left;
+}
+
+div.col-md-1{
+  text-align: right;
+  
 }
 
