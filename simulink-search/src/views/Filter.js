@@ -135,20 +135,21 @@ const Filter = ({closeFilter}) => {
                   <p>Number of Comments</p>
                   <NumericInput min={0} className="form-control" />
                 </Col>
-                <Col md='4' className='filtered-search'>
-                  <Button className='search-button' variant="contained" size ='medium' onClick={sendIt}>
-                    Filtered Search
-                  </Button> 
-                </Col>
+                
               </Row>
               <Row>
                 <Col md='4' className='col-example'>
                   <p>Watchers Count</p>
                   <NumericInput min={0} className="form-control"onChange={Change4}/>
                 </Col>
-                <Col md='4' className='searchFilter'>
+                <Col md='4' className='col-example'>
                   <p>Number of Ratings</p>
                   <NumericInput min={0} className="form-control"/>
+                </Col>
+                <Col md='4' className='filtered-search'>
+                  <Button className='search-button' variant="contained" size ='medium' onClick={sendIt}>
+                    Filtered Search
+                  </Button> 
                 </Col>
               </Row>
             </Container>

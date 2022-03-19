@@ -95,7 +95,7 @@ button.loader {
 
 div.dropdown{
 
-  text-align: right;
+  text-align: left;
 }
 
 div.search.row{
@@ -116,7 +116,7 @@ Table {
 }
 
 
-
+ 
 div.description.row{
   width: auto;
 }
@@ -142,7 +142,7 @@ div.col-md-1{
 
 div.filtered-search.col-md-4{
   margin-top: 4%;
-  text-align: right;
+  text-align: center;
 }
 
 div.closeButton{
@@ -153,6 +153,7 @@ h1{
   color:#345beb;
   text-align: center;
 }
+
 
 
 div.modalBackground{
@@ -167,13 +168,22 @@ div.modalBackground{
 }
 .modalContainer {
 
-  width: 80%;
-  height: 60%;
+  width: 65%;
+  height: 50%;
   border-radius: 1%;
 
   background-color: rgb(187, 209, 233);
   box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
   display: flex;
   flex-direction: column;
-  padding: 5;
+  padding: 1%;
+}
+
+div.col-example.col-md-4{
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+div.closeButton button{
+  background-color: rgb(177, 6, 6);
 }
