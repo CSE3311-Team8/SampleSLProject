@@ -1,17 +1,18 @@
 import React from "react";
+import Home from "../controllers/HomeController";
 import{ useState } from "react";
 import { Col, Container, Row } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-date-picker';
 import useFetch from "../controllers/useFetch";
-import Home from "../controllers/HomeController";
 import { Button } from '@mui/material';
 import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
 
 //will contain the login for searching with different field parameters
-const Filter = () => {
+const Filter = ({closeFilter}) => {
+
 
   const {isLoading, datas} = useFetch('http://localhost:8000/items')
   //const {data} = useFetch('http://localhost:8000/items');
@@ -28,6 +29,7 @@ const Filter = () => {
   const [watchersCount, setValue3] = useState(0);
 
   //these functions handle the what happens when new value is selected from menu
+
   function Change (value) {
     setValue(value);
     console.log(forksCount);
@@ -71,71 +73,88 @@ const Filter = () => {
   //will be updated to fit mock up display
   //all fields below will be combined into a single data request
   return ( 
-    <Container>
-      <Row className="date">
-        <Col md='4' className='col-example'>
-          <p>Created At</p>
-          <DatePicker   />
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>Updated At</p>
-          <DatePicker   />
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>Language</p>
-          <DropdownButton id="dropdown-item-button" title="Select Language">
-            <Dropdown.ItemText></Dropdown.ItemText>
-            <Dropdown.Item as="button">C++</Dropdown.Item>
-            <Dropdown.Item as="button">Java</Dropdown.Item>
-            <Dropdown.Item as="button">C#</Dropdown.Item>
-          </DropdownButton>
-        </Col>
-      </Row>
-      <Row>
-        <Col md='4' className='col-example'>
-          <p>Forks Count</p>
-          <NumericInput className="form-control"onChange={Change}/> 
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>Open Issues Count</p>
-          <NumericInput className="form-control"onChange={Change2}/>
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>License</p>
-          <DropdownButton id="dropdown-item-button" title="Select License">
-            <Dropdown.ItemText></Dropdown.ItemText>
-            <Dropdown.Item as="button">MIT</Dropdown.Item>
-            <Dropdown.Item as="button">GNU</Dropdown.Item>
-            <Dropdown.Item as="button">BSD</Dropdown.Item>
-          </DropdownButton>
-        </Col>
-      </Row>
-      <Row>
-        <Col md='4' className='col-example'>
-          <p>Stargazers Count</p>
-          <NumericInput className="form-control" onChange={Change3}/>
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>Number of Comments</p>
-          <NumericInput className="form-control" />
-        </Col>
-      </Row>
-      <Row>
-        <Col md='4' className='col-example'>
-          <p>Watchers Count</p>
-          <NumericInput className="form-control"onChange={Change4}/>
-        </Col>
-        <Col md='4' className='col-example'>
-          <p>Number of Ratings</p>
-          <NumericInput className="form-control"/>
-        </Col>
-        <Col md='4' className='filtered-search'>
-          <Button className='search-button' variant="contained" size ='large' onClick={sendIt}>
-            Filtered Search
-          </Button> 
-        </Col>
-      </Row>
-    </Container>
+   
+    /*********************filter modal**********************/
+    <div className="modalBackground">
+      <div className="modalContainer">
+          <div className="title">
+            <div className="closeButton">
+              <Button className='searchButton' variant="contained" size ='small' onClick = {()=>(
+                closeFilter(false))}>X</Button>
+            </div>
+            <div className="titleValue">
+              <h1>Filtered Search</h1>
+            </div>
+          </div>
+          <div className="body">
+            <Container>
+              <Row className="date">
+                <Col md='4' className='col-example'>
+                  <p>Created At</p>
+                  <DatePicker   />
+                </Col>
+                <Col md='4' className='col-example'>
+                  <p>Updated At</p>
+                  <DatePicker   />
+                </Col>
+                <Col md='4' className='col-example'>
+                  <p>Language</p>
+                  <DropdownButton id="dropdown-item-button" title="Select Language">
+                    <Dropdown.ItemText></Dropdown.ItemText>
+                    <Dropdown.Item as="button">C++</Dropdown.Item>
+                    <Dropdown.Item as="button">Java</Dropdown.Item>
+                    <Dropdown.Item as="button">C#</Dropdown.Item>
+                  </DropdownButton>
+                </Col>
+              </Row>
+              <Row>
+                <Col md='4' className='col-example'>
+                  <p>Forks Count</p>
+                  <NumericInput min={0} className="form-control"onChange={Change}/> 
+                </Col>
+                <Col md='4' className='col-example'>
+                  <p>Open Issues Count</p>
+                  <NumericInput min={0} className="form-control"onChange={Change2}/>
+                </Col>
+                <Col md='4' className='col-example'>
+                  <p>License</p>
+                  <DropdownButton id="dropdown-item-button" title="Select License">
+                    <Dropdown.ItemText></Dropdown.ItemText>
+                    <Dropdown.Item as="button">MIT</Dropdown.Item>
+                    <Dropdown.Item as="button">GNU</Dropdown.Item>
+                    <Dropdown.Item as="button">BSD</Dropdown.Item>
+                  </DropdownButton>
+                </Col>
+              </Row>
+              <Row>
+                <Col md='4' className='col-example'>
+                  <p>Stargazers Count</p>
+                  <NumericInput min={0} className="form-control" onChange={Change3}/>
+                </Col>
+                <Col md='4' className='col-example'>
+                  <p>Number of Comments</p>
+                  <NumericInput min={0} className="form-control" />
+                </Col>
+                <Col md='4' className='filtered-search'>
+                  <Button className='search-button' variant="contained" size ='medium' onClick={sendIt}>
+                    Filtered Search
+                  </Button> 
+                </Col>
+              </Row>
+              <Row>
+                <Col md='4' className='col-example'>
+                  <p>Watchers Count</p>
+                  <NumericInput min={0} className="form-control"onChange={Change4}/>
+                </Col>
+                <Col md='4' className='searchFilter'>
+                  <p>Number of Ratings</p>
+                  <NumericInput min={0} className="form-control"/>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+      </div>
+    </div>
   );
 }
  

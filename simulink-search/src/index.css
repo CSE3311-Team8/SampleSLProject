@@ -5,7 +5,12 @@
   max-width: auto;
   
 }
-
+html{
+  background-color: #dde6ee;
+}
+div#root{
+  background-color: #dde6ee;
+}
 .App input {
   font-size: "16px";  
   width:60%; 
@@ -36,7 +41,7 @@
 
 
 
-div.col-example.col-md-4{
+div.col-example.col-md-3{
   
   text-align: center;
   margin-bottom: 3%;
@@ -65,9 +70,7 @@ td.name {
   font-size: 16px;
   color:#345beb;
 }
-div.search-bar.col-md-11{
-  text-align: left;
-}
+
 th.header{
   font-weight: bold;
   font-size: 16px;
@@ -96,11 +99,18 @@ div.dropdown{
 }
 
 div.search.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 5%;
+  
 }
 
 Table {
-  border: 2px solid #345beb;
+  border-radius: 1%;
+  background-color: rgb(187, 209, 233);
+  
+  border: 2px #345beb;
   width: auto;
   height: auto;
 }
@@ -115,22 +125,55 @@ td.description{
   margin-top: 2%;
 }
 
-div.filtered-search.col-md-4{
-
-  text-align: right;
-}
 
 td.model-files{
   overflow: hidden; 
   word-wrap: break-word;
 }
 
-div.repositories.col-md-11{
+ div.repositories.col-md-11{
   text-align: left;
 }
 
 div.col-md-1{
   text-align: right;
   
+} 
+
+div.filtered-search.col-md-4{
+  margin-top: 4%;
+  text-align: right;
 }
 
+div.closeButton{
+  text-align: right;
+}
+
+h1{
+  color:#345beb;
+  text-align: center;
+}
+
+
+div.modalBackground{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalBackground{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainer {
+
+  width: 80%;
+  height: 60%;
+  border-radius: 1%;
+
+  background-color: rgb(187, 209, 233);
+  box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
+  display: flex;
+  flex-direction: column;
+  padding: 5;
+}

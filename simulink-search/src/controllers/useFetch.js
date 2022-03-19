@@ -15,7 +15,7 @@ const useFetch = (repository, word) =>{
     if(repository === 'GitHub')
     {
       setLoading(true);
-      const response = await fetch(url,{
+      const response = fetch(url,{
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"

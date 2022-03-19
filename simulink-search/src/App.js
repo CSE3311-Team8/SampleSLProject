@@ -4,7 +4,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
 import Home from './controllers/HomeController';
 import Filter from './views/Filter';
 
@@ -17,6 +16,7 @@ function App() {
   const [tempSearchWord, setTempSearchWord] = useState("");
   const [repository, setRepository] = useState("TYPE");
   const [repo, setRepo] = useState("");
+  const [openFilter, setOpenFilter] = useState(false);
   //search bar title
   const header = "Simulink Search"
   const handleSelect=(event)=>{
@@ -26,6 +26,12 @@ function App() {
     setRepository(event);
    
   }
+
+  const setter = () =>{
+    
+    setOpenFilter(false);
+    
+  }
   
   const handleChange=()=>{
     var id=document.getElementsByTagName("input")[0];
@@ -33,10 +39,17 @@ function App() {
   }
 
   const handleClick=()=>{
+    setOpenFilter(false);
     setSearchWord(tempSearchWord);
     setRepo(repository);
   }
 
+  const handleFilter=()=>{
+    setSearchWord("");
+    setOpenFilter(true);
+  }
+
+  ///onClick for for x button, set everything to null 
 
   //search bar implemented in App.js so it persists on page, could be done with component
   //home route returns regular search bar
@@ -45,47 +58,39 @@ function App() {
   /*Give bottom margin to tables mapped in regular search*/
  
   return (
-    <Router>
-      <Container className="App">
+    <Container className="App">
       <h2>{header}</h2>
-        <Row className="search">
-          <Col md = {1}>
-            <DropdownButton  id="dropdown-item-button" style={{marginBottom : '5%'}} title={repository} onSelect={handleSelect}>
-              <Dropdown.Item eventKey = "GitHub" as="button" >GitHub</Dropdown.Item>
-              <Dropdown.Item eventKey = "MATC" as="button">MATC</Dropdown.Item>
-              <Dropdown.Item eventKey = "All" as="button">All</Dropdown.Item>
-            </DropdownButton>
-          </Col>
-          <Col md = {10} className='repositories'>
-            <Form>
-              <FormGroup>
-                <InputGroup>
-                  <FormControl placeholder='Search here...' onChange={handleChange}/>
-                  <Link to = {'/'}>
-                    <Button className='search-button' variant="contained" size ='medium'style={{marginLeft : '15%'}} onClick={handleClick} >
-                    Search
-                    </Button>
-                  </Link>  
-                  <Link to = {'/filter'}>
-                    <Button className='filter-button' variant="contained" size ='medium'  style={{marginLeft : '35%'}}>
-                      Filter
-                    </Button>
-                  </Link>
-                </InputGroup> 
-              </FormGroup>
-            </Form>
-          </Col>
-        </Row>
-        <Row className="items">
-          <Col className="item-list" md='12'> 
-            <Routes>
-              <Route exact path="/" element ={<Home string = {searchWord} string2 ={repo} string3= {repository}/>}/>
-              <Route exact path="/filter" element = {<Filter/>}/>
-            </Routes>
-          </Col>   
-        </Row>
-      </Container>  
-    </Router>
+      <Row className="search">
+        <Col md = {1}>
+          <DropdownButton  id="dropdown-item-button" style={{marginBottom : '5%'}} title={repository} onSelect={handleSelect}>
+            <Dropdown.Item eventKey = "GitHub" as="button" >GitHub</Dropdown.Item>
+            <Dropdown.Item eventKey = "MATC" as="button">MATC</Dropdown.Item>
+            <Dropdown.Item eventKey = "All" as="button">All</Dropdown.Item>
+          </DropdownButton>
+        </Col>
+        <Col md = {10} className='repositories'>
+          <Form>
+            <FormGroup>
+              <InputGroup>
+                <FormControl placeholder='Search here...' onChange={handleChange} md = {8}/>
+                  <Button md = {1} className='search-button' variant="contained" size ='medium' onClick={handleClick} >
+                  Search
+                  </Button>
+                  <Button  md = {1} className='filter-button' variant="contained" size ='medium'   onClick = {handleFilter}>
+                    Filter
+                  </Button>
+              </InputGroup> 
+            </FormGroup>
+          </Form>
+        </Col>
+      </Row>
+      <Row className="items">
+        <Col className="item-list" md='12'> 
+            <Home string = {searchWord} string2 ={repo} string3= {repository}/>
+            {openFilter === true && <Filter closeFilter = {setter}/>}
+        </Col>   
+      </Row>
+    </Container>  
   );
 }
 export default App;
