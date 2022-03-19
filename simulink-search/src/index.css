@@ -1,52 +1,179 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-/* base styles */
-* {
-  margin: 0;
-  font-family: "Quicksand";
-  color: #333;
+.App {
+  
+  max-width: auto;
+  
 }
-.navbar {
-  padding: 20px;
+html{
+  background-color: #dde6ee;
+}
+div#root{
+  background-color: #dde6ee;
+}
+.App input {
+  font-size: "16px";  
+  width:60%; 
+  color: #345beb;
+}
+
+.App h2 {
+  margin-top: 15%;
+  text-align: center;
+  font-size: 60px;
+  color:#345beb;
+  margin-bottom: 5%;
+}
+
+.preview p{
+  font-size: 18px;
+  
+  color:#3633FF;
+  margin-top: 1%;
+  margin-bottom: 4%;
+}
+
+.preview h1{
+  font-size: 16px;
+  color:#337ab7;
+  font-weight: bold;
+}
+
+
+
+div.col-example.col-md-3{
+  
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+td.url {
+  font-weight: bold;
+  font-size: 16px;
+  color:#345beb;
+  text-decoration: underline;
+}
+
+td.date-created {
+  font-weight: bold;
+  font-size: 16px;
+  color:#345beb;
+}
+td.date-updated {
+  font-weight: bold;
+  font-size: 16px;
+  color:#345beb;
+}
+
+td.name {
+  font-weight: bold;
+  font-size: 16px;
+  color:#345beb;
+}
+
+th.header{
+  font-weight: bold;
+  font-size: 16px;
+  color:#337ab7;
+
+  width: 20%;
+}
+div.preview{
+
+  margin-bottom: 6%;
+}
+
+div.date.row{
+  margin-top: 5%;
+  
+}
+
+button.loader {
+
+  margin-bottom: 10%;
+}
+
+div.dropdown{
+
+  text-align: right;
+}
+
+div.search.row{
   display: flex;
   align-items: center;
-  max-width: 600px;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  justify-content: center;
+  margin-bottom: 5%;
+  
 }
-.navbar h1 {
- 
-  color: #f1356d;
-}
-.navbar .links {
-  margin-left: auto;
-}
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
-}
-.navbar a:hover {
-  color: #f1356d;
-}
-.content {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-}
-.itemView{
-  padding: 8px 12px;
-  margin: 15px 0;
-  border-bottom: 1px solid #fafafa;
-}
-.itemView:hover{
 
-  box-shadow: 1px 3px 5px rgba(0,0,0,0,1)
+Table {
+  border-radius: 1%;
+  background-color: rgb(187, 209, 233);
+  
+  border: 2px #345beb;
+  width: auto;
+  height: auto;
 }
-.itemView h2{
 
-  font-size: 20px;
+
+
+div.description.row{
+  width: auto;
+}
+
+td.description{
+  margin-top: 2%;
+}
+
+
+td.model-files{
+  overflow: hidden; 
+  word-wrap: break-word;
+}
+
+ div.repositories.col-md-11{
+  text-align: left;
+}
+
+div.col-md-1{
+  text-align: right;
+  
+} 
+
+div.filtered-search.col-md-4{
+  margin-top: 4%;
+  text-align: right;
+}
+
+div.closeButton{
+  text-align: right;
+}
+
+h1{
   color:#345beb;
-  margin-bottom: 8px;
+  text-align: center;
+}
 
+
+div.modalBackground{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalBackground{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainer {
+
+  width: 80%;
+  height: 60%;
+  border-radius: 1%;
+
+  background-color: rgb(187, 209, 233);
+  box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
+  display: flex;
+  flex-direction: column;
+  padding: 5;
 }
