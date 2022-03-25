@@ -17,36 +17,44 @@ function App() {
   const [repository, setRepository] = useState("TYPE");
   const [repo, setRepo] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
+  const [filterWatch, setFilterWatch] = useState(false);
   //search bar title
   const header = "Simulink Search"
   const handleSelect=(event)=>{
     //every time repository changes everything has to change
     //document.getElementsByTagName("input")[0].value = "";
-    
+  
     setRepository(event);
    
   }
 
+  //
   const setter = () =>{
-    
     setOpenFilter(false);
-    
+  }
+
+  const searchBarSetter = () =>{
+    setSearchWord(searchWord);
+    //setOpenFilter(false);
   }
   
+  //this function handles the input form
   const handleChange=()=>{
     var id=document.getElementsByTagName("input")[0];
     setTempSearchWord(id.value);
   }
 
   const handleClick=()=>{
-    setOpenFilter(false);
+    setOpenFilter(false);//closes filter modal
     setSearchWord(tempSearchWord);
     setRepo(repository);
   }
 
   const handleFilter=()=>{
-    setSearchWord("");
-    setOpenFilter(true);
+    setSearchWord("");//will clear search bar when filter button is clicked
+    setOpenFilter(true);//opens filter modal
+    setFilterWatch(true);
+
   }
 
   ///onClick for for x button, set everything to null 
@@ -62,7 +70,7 @@ function App() {
       <h2>{header}</h2>
       <Row className="search">
         <Col md = {1}>
-          <DropdownButton  id="dropdown-item-button" style={{marginBottom : '5%'}} title={repository} onSelect={handleSelect}>
+          <DropdownButton id="dropdown-item-button" style={{marginBottom : '5%'}} title={repository} onSelect={handleSelect}>
             <Dropdown.Item eventKey = "GitHub" as="button" >GitHub</Dropdown.Item>
             <Dropdown.Item eventKey = "MATC" as="button">MATC</Dropdown.Item>
             <Dropdown.Item eventKey = "All" as="button">All</Dropdown.Item>
@@ -87,7 +95,7 @@ function App() {
       <Row className="items">
         <Col className="item-list" md='12'> 
             <Home string = {searchWord} string2 ={repo} string3= {repository}/>
-            {openFilter === true && <Filter closeFilter = {setter}/>}
+            {openFilter === true && <Filter  filterState = {filterWatch} closeFilter = {setter} word = {searchWord} repo = {repository} setSearch = {searchBarSetter}/>}
         </Col>   
       </Row>
     </Container>  
