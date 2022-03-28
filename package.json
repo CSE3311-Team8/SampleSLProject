@@ -27,7 +27,9 @@
     "react-router-dom": "^6.0.0",
     "react-scripts": "^3.0.1",
     "react-table": "^7.7.0",
+
     "styled-components": "^5.3.3",
+
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,5 +1,7 @@
 import React from "react";
+
 import ProjectList from "./ProjectList";
+
 import{ useState } from "react";
 import { Col, Container, Row } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -11,6 +13,7 @@ import NumericInput from 'react-numeric-input';
 NumericInput.style.input.color = 'blue';
 
 //will contain the login for searching with different field parameters
+
 const Filter = (
   props
 ) => {
@@ -18,6 +21,7 @@ const Filter = (
   //need to pass repository and searchword
   //the change on word needs to register in useFetch 
   const {isLoading, datas} = useFetch(props.repo, props.word);
+
 
   //default value for each select drop-down menu
   //all this login can be combine into one component
@@ -30,6 +34,7 @@ const Filter = (
   const [openIssuesCount, setValue1] = useState(0);
   const [starGazersCount, setValue2] = useState(0);
   const [watchersCount, setValue3] = useState(0);
+
   const[tempFilterdItems, setFilteredItems] = useState([]);
 
   //these functions handle the what happens when new value is selected from menu
@@ -59,12 +64,15 @@ const Filter = (
     }
     else 
     {                          
+
       //console.log(toString(p.forks_count).match(toString(forksCount)));
+
       return toString(p.forks_count).match(toString(forksCount));
     }
   });
   
   const sendIt =()=>{
+
     setFilteredItems(filteredItems);
     console.log(filteredItems);
     console.log(props.word);
@@ -72,7 +80,6 @@ const Filter = (
     props.setSearch(props.word);
 
 
-    
 
   }
   //logic for displaying the drowp-down menus
@@ -81,6 +88,7 @@ const Filter = (
   return ( 
    
     /*********************filter modal**********************/
+
     <div className="Home">
       {props.filterState === true &&
       <div className="modalBackground">
@@ -172,6 +180,7 @@ const Filter = (
    
      
   
+
   );
 }
  

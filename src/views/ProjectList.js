@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import { useState} from "react";
 import { Button } from '@mui/material';
 
+
 //list of projects is generated using the prop received  
 const ProjectList = (props) => {
   const[visible, setVisible] = useState(10);
@@ -87,6 +88,7 @@ const ProjectList = (props) => {
                         <h1 className="headers">stargazers count : {item.no_of_comments || item.stargazers_count}</h1>
                       </td>
                     </tr>
+
                   </tbody>
                 </Table>
               </div>
@@ -95,7 +97,9 @@ const ProjectList = (props) => {
         }
         <div className="page-count">
           {visible < data.length && ( 
+
             <Button className='loader' variant="contained" size ='medium' onClick={loadMOre}>Next 10</Button>
+
           )}
         </div>  
       </div>

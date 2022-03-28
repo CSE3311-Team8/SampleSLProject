@@ -20,7 +20,9 @@ div#root{
 }
 
 .App h2 {
+
   margin-top: 10%;
+
   text-align: center;
   font-size: 60px;
   color:#345beb;
@@ -43,7 +45,9 @@ div#root{
 
 
 
+
 div.col-example.col-md-4{
+
   
   text-align: center;
   margin-bottom: 3%;
@@ -96,7 +100,9 @@ button.loader {
 }
 
 div.dropdown{
+
  
+
   text-align: right;
 }
 
@@ -112,6 +118,7 @@ div.search.row.dropdown {
   pointer-events: none;
 }
 
+
 Table {
   border-radius: 1%;
   background-color: rgb(187, 209, 233);
@@ -123,6 +130,7 @@ Table {
 
 
  
+
 div.description.row{
   width: auto;
 }
@@ -147,7 +155,9 @@ div.col-md-1{
 } 
 
 div.filtered-search.col-md-4{
+
  
+
   margin-top: 4%;
   text-align: right;
 }
@@ -167,7 +177,9 @@ div.modalBackground{
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin-bottom: 3%;
+
 }
 .modalBackground{
   display: flex;
@@ -176,14 +188,17 @@ div.modalBackground{
 }
 .modalContainer {
 
+
   width: 65%;
   height: 50%;
+
   border-radius: 1%;
 
   background-color: rgb(187, 209, 233);
   box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
   display: flex;
   flex-direction: column;
+
   padding: 1%;
 }
 
@@ -194,4 +209,5 @@ div.col-example.col-md-4{
 
 div.closeButton button{
   background-color: rgb(177, 6, 6);
+
 }

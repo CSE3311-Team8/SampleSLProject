@@ -3,6 +3,7 @@ import ProjectList from "../views/ProjectList";
 import useFetch from "./useFetch";
 
 
+
 //Hosts the lists of projects matching search word
 const Home = (props) => {
 
@@ -30,7 +31,9 @@ const Home = (props) => {
   //the filtering parameter used for project filtering
   return ( 
     <div className="home">
+
       {isLoading && <div>Loading...</div> } 
+
       <ProjectList  items ={filteredItems} repository = {database} word = {word}/>
     </div>
   );
