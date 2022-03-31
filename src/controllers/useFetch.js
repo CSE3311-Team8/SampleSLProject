@@ -3,9 +3,11 @@ import { useEffect } from "react";
 
 const useFetch = (repository, word) =>{
   
+
+  const pageLimit = 10;
   const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const url = 'http://localhost:8000/items';
+  const url = `https://bkkedr0m0e.execute-api.us-east-1.amazonaws.com/items?q=${word}`;
   const url2 = 'http://localhost:9000/items2';
   
   //will execute function when data is updated
@@ -15,19 +17,26 @@ const useFetch = (repository, word) =>{
     if(repository === 'GitHub')
     {
       setLoading(true);
-
-      const response = await fetch(url,{
-
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      });
       
-      const data = await response.json();
-      setItems(data);
-      setLoading(false);
-    }
+      async function fetchData() {
+        // You can await here
+        const response = await fetch(url,{
+
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+            
+          },
+          mode: 'cors'
+        }).then(res => res.json().then(data => setItems(data)));
+        
+        console.log(response);
+      
+        setLoading(false);
+        // ...
+      }
+      fetchData();
+    }  
     else if(repository === 'MATC')
     {
       setLoading(true);
@@ -35,7 +44,7 @@ const useFetch = (repository, word) =>{
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
-        }
+        },
       });
       
       const data = await response.json();
