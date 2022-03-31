@@ -7,7 +7,7 @@ const useFetch = (repository, word) =>{
   const [page, setPage] = useState(1);
   const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const url = `https://sampleslproject-storage-53775c4755905-staging.s3.amazonaws.com/GitHub_Projects.json/items?q=${word}&_page=${page}&_limit=${pageLimit}`;
+  const url = `https://bkkedr0m0e.execute-api.us-east-1.amazonaws.com/items?q=${word}&_page=${page}&_limit=${pageLimit}`;
   const url2 = `http://localhost:5000/items2?q=${word}&_page=${page}&_limit=${pageLimit}`;
   
   //will execute function when data is updated
