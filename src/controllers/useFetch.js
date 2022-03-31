@@ -23,7 +23,8 @@ const useFetch = (repository, word) =>{
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
-        }
+        },
+        mode:'cors'
       });
       console.log(response);
       
