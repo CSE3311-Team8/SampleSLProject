@@ -12,21 +12,7 @@ const Home = (props) => {
   
   //will display a load effect between searches
   const {isLoading, datas} = useFetch(database, word);
-  const filteredItems = datas.filter( p =>{
-    if(word === "")
-    {
-      return "";    
-    }
-    else if(p.Description)
-    {
-      return p.Description.toLowerCase().match(word.toLowerCase());
-    } else if(p.content)
-    {
-      return p.content.toLowerCase().match(word.toLowerCase());
-    }
-    return "";
-  });
-  
+
   //the prop "word" comes from search bar and will be 
   //the filtering parameter used for project filtering
   return ( 
@@ -34,7 +20,7 @@ const Home = (props) => {
 
       {isLoading && <div>Loading...</div> } 
 
-      <ProjectList  items ={filteredItems} repository = {database} word = {word}/>
+      <ProjectList  items ={datas} repository = {database} word = {word}/>
     </div>
   );
 }
