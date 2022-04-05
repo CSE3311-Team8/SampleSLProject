@@ -1,75 +1,105 @@
 import { useState } from "react";
 import { useEffect } from "react";
 
-const useFetch = (repository, word) =>{
+import pkg from "aws-sdk";
+
+const { config, DynamoDB } = pkg;
+const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
+
+const useFetch = (repository, word) => {
   const pageLimit = 40;
   const pageLimitAll = 40;
   const [page, setPage] = useState(1);
   const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const url = `https://bkkedr0m0e.execute-api.us-east-1.amazonaws.com/items?q=${word}&_page=${page}&_limit=${pageLimit}`;
-  const url2 = `http://localhost:5000/items2?q=${word}&_page=${page}&_limit=${pageLimit}`;
-  
+
   //will execute function when data is updated
-  useEffect(async() => {
-    //console.log(repository);
-    setLoading(false);
-    if(repository === 'GitHub')
-    {
-      setLoading(true);
+  useEffect(async () => {
+    config.update({
+      accessKeyId: "AKIAVADJ55NRIQZNUTM4",
+      secretAccessKey: "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",
+      region: "us-east-1",
+      endpoint: "dynamodb.us-east-1.amazonaws.com",
+    });
+    const dynamoDB = new DynamoDB();
 
-      const response = await fetch(url,{
+    if (repository === "GitHub" && word !== "") {
 
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+      /**************This method of scanning/searching in description works******/
+      const documentClient = new DynamoDB.DocumentClient();
+      const params = {
+        TableName: "GitHubProject",
+        ScanIndexForward: true,
+        FilterExpression: "contains(#DYNOBASE_Description, :Description)",
+        ExpressionAttributeNames: {
+          "#DYNOBASE_Description": "Description",
         },
-        mode:'cors'
-      });
-      console.log(response);
-      
-      const data = await response.json();
-      setItems(data);
+        ExpressionAttributeValues: {
+          ":Description": `${word}`,
+        },
+      };
+      const results = await documentClient.scan(params).promise();
+
+      console.log(results.Items);
+
+      /*****^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^***************/
+
+
+
+      /*************This method used standard SQL SELECT statements, it returns and dynamobd ojbect*/
+      /*Dynamodb object must be unmarshalled into standard JSON format for this project to work*/
+
+        // const results = await documentClient.scan(params).promise();
+        // async function queryWithPartiQL1({ search }) {
+        //   const statement = `SELECT * FROM GitHubProject WHERE "forks_count" > ${word}`;
+        //   const results = await dynamoDB
+        //     .executeStatement({ Statement: statement })
+        //     .promise()
+        //     .catch((err) => console.error(err));
+        //   console.log(results.Items.length);
+        //   let tracker = [];
+        //   var i = 0;
+        //   //get size of object so you can loop through exactly
+        //   for (i = 0; i < results.Items.length; i++) {
+        //     console.log(entered);
+        //     tracker.push(unmarshall(results.Items[i]));
+        //   }
+        //   console.log(tracker);
+        // }
+        // queryWithPartiQL1({ word });
+      //
+      setItems(results.Items);
       setLoading(false);
-    }
-    else if(repository === 'MATC')
-    {
-      setLoading(true);
-      const response = await fetch(url2,{
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+    } 
+    else if (repository === "MATC") {
+      async function queryWithPartiQL2({ search }) {
+        const statement = `SELECT * FROM MATCProject WHERE "downloads" > '${word}'`;
+        const results = await dynamoDB
+          .executeStatement({ Statement: statement })
+          .promise()
+          .catch((err) => console.error(err));
+
+        console.log(results.Items.length);
+        let tracker = [];
+        var i = 0;
+        //get size of object so you can loop through exactly
+        for (i = 0; i < results.Items.length; i++) {
+          tracker.push(unmarshall(results.Items[i]));
         }
-      });
-      
-      const data = await response.json();
-      setItems(data);
+        console.log(tracker);
+        setItems(tracker);
+      }
+
+      queryWithPartiQL2({ word });
       setLoading(false);
     }
-    else if (repository === 'All')
-    {
-      try{//both json arrays are merged here
-        var res1 = await fetch(`http://localhost:8000/items?q=${word}&_page=${page}&_limit=${pageLimitAll}`);
-        var data1 = await res1.json();
-        var res2 = await fetch(`http://localhost:5000/items2?q=${word}&_page=${page}&_limit=${pageLimitAll}`);
-        var data2 = await res2.json();
-        var res = [...data1,...data2];
-        setItems(res);
-      }catch(e){
-          console.error(e)
-      }finally{
-        //setLoading(false)
-      }
-    }else if(repository === 'TYPE') 
-    {
-      alert('Select repository type to begin search...');
+
+    else if (repository === "TYPE") {
+      alert("Select repository type to begin search...");
     }
   }, [word, repository]);
-  
-  
-  return{datas, isLoading}
 
-}
-  
+  return { datas, isLoading };
+};
 
 export default useFetch;
