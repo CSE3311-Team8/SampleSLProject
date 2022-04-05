@@ -15,11 +15,14 @@ import React, { useState } from "react";
 import Home from "./controllers/HomeController";
 import Filter from "./views/Filter";
 import FilterController from "./controllers/FilterController";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 //test comment
 
 function App() {
   //hook for search word
+
   const [searchWord, setSearchWord] = useState("");
   const [filterSearchWord, setFilterSearchWord] = useState("");
   const [tempSearchWord, setTempSearchWord] = useState("");
@@ -31,15 +34,16 @@ function App() {
   const [forksCount, setForksCount] = useState(0);
   const [openIssuesCount, setOpenIssuesCount] = useState(0);
   const [starGazersCount, setStarGazersCount] = useState(0);
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [watchersCount, setWatchersCount] = useState(0);
-  const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState(new Date());
   const [language, setLanguage] = useState("");
   const [license, setLicense] = useState("");
   const [numberOfComments, setNumberOfComments] = useState(0);
   const [numberOfRatings, setNumberOfRatings] = useState(0);
-  const [languageTitle, setLanguageTitle] = useState("Select Language");
-  const [licenseTitle, setLicenseTitle] = useState("Select License");
+  const [languageTitle, setLanguageTitle] = useState("");
+  const [licenseTitle, setLicenseTitle] = useState("");
+
 
   //search bar title
   const header = "Simulink Search";
@@ -59,9 +63,9 @@ function App() {
     console.log(forksCount);
     setForksCount(value);
   }
-  const open_issues_count_setter = (event) => {
+  const open_issues_count_setter = (value) => {
     console.log(openIssuesCount);
-    setOpenIssuesCount(event);
+    setOpenIssuesCount(value);
   };
   const stargazers_count_setter = (event) => {
     setStarGazersCount(event);
@@ -73,8 +77,9 @@ function App() {
     setEndDate(event);
   };
   const language_setter = (event) => {
-    console.log(language);
+    
     setLanguage(event);
+    console.log(language);
   };
   const license_setter = (event) => {
     console.log(license);

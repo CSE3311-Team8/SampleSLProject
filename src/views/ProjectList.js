@@ -9,7 +9,6 @@ const ProjectList = (props) => {
 
   const data = props.items;
   const database = props.repository;
-  const state = props.tracker;
   //console.log(database);
   let Visible = visible;
 

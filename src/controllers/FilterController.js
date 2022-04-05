@@ -1,7 +1,6 @@
 import React from "react";
-import { useAbsoluteLayout } from "react-table";
 import ProjectList from "../views/ProjectList";
-import Filter from "../views/Filter";
+
 //import useFilterFetch from "./useFilterFetch";
 
 import useFilterFetch from "./useFilterFetch";
@@ -12,7 +11,6 @@ const FilterController = (props) => {
   const word = props.word;
   const start_date = props.start_data;
 
-  
   const end_date = props.end_date;
   const language = props.language;
   const license = props.license;
