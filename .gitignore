@@ -10,7 +10,8 @@
 
 # testing
 /coverage
-
+/loadGitHubTables.js
+/createGitHubtables.js
 
 # misc
 .DS_Store

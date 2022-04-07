@@ -1,5 +1,4 @@
 import React from "react";
-import { MDBInput } from "mdb-react-ui-kit";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -7,8 +6,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import NumericInput from "react-numeric-input";
-import "react-datepicker/dist/react-datepicker.css";
-
+import InputSpinner from "react-bootstrap-input-spinner";
+//import { eventListeners } from "@popperjs/core";
 
 NumericInput.style.input.color = "blue";
 
@@ -16,44 +15,47 @@ NumericInput.style.input.color = "blue";
 //props here are the word in the search bar and the repo selected
 
 const Filter = (props) => {
-
-  
   const [languageTitle, setLanguageTitle] = useState("Select Language");
   const [licenseTitle, setLicenseTitle] = useState("Select License");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [dateTracker, setDateTracker] = useState();
+  const [endDateTracker, setEndDateTracker] = useState();
+
+  // const upadater = document.querySelectorAll('.form-outline').forEach((formOutline) => {
+  //   new NumericInput(formOutline).update();
+  // });
 
   //these functions handle the what happens when new value is selected from menu
   function Change(event) {
     //setForksCount(value);
     //console.log(event.target.value);
-    props.forks_count(event.target.value);
+
+    props.forks_count(event);
   }
   function Change2(event) {
     //setOpenIssuesCount(value);
     //console.log(openIssuesCount);
-    props.open_issues_count(event.target.value);
+    props.open_issues_count(event);
   }
   function Change3(event) {
     //setStarGazersCount(value);
     //console.log(starGazersCount);
-    props.stargazers_count(event.target.value);
+    props.stargazers_count(event);
   }
   function Change4(event) {
     //setWatchersCount(value);
     //console.log(watchersCount);
-    props.watchers_count(event.target.value);
+    props.watchers_count(event);
   }
 
   function handleNumOfComments(event) {
     //setNumberOfComments(value);
     //console.log(numberOfComments);
-    props.number_of_comments(event.target.value);
+    props.number_of_comments(event);
   }
   function handleNumOfRatings(event) {
     //setNumberOfRatings(value);
     //console.log(numberOfRatings);
-    props.number_of_ratings(event.target.value);
+    props.number_of_ratings(event);
   }
 
   const handleLanguageSelect = (event) => {
@@ -67,18 +69,15 @@ const Filter = (props) => {
     props.language_title(event);
   };
   const handleStartDate = (event) => {
-    //every time repository changes everything has to change
-    //document.getElementsByTagName("input")[0].value = "";
-    //setStartDate(event);
-    console.log(event);
-    setStartDate(event);
+    setDateTracker(event);
     props.start_date(event);
+    //log(startDate);
   };
   const handleEndDate = (event) => {
     //every time repository changes everything has to change
     //document.getElementsByTagName("input")[0].value = "";
-    setEndDate(event);
-    console.log(event);
+    //setEndDate(event);
+    setEndDateTracker(event);
     props.end_date(event);
   };
   const handleLicenseSelect = (event) => {
@@ -110,22 +109,32 @@ const Filter = (props) => {
                 </Button>
               </div>
               <div className="titleValue">
-                <h1>Filtered Search</h1>
+                <h1>Filter</h1>
               </div>
             </div>
             <div className="body">
               <Container>
                 <Row className="date">
                   <Col md="4" className="col-example">
-                    <p>Start Date:</p>
-                    <DatePicker selected={startDate} onChange={handleStartDate} />
+                    <h4>Start Date</h4>
+                    <DatePicker
+                      selected={dateTracker}
+                      onChange={handleStartDate}
+                      popperPlacement="top-end"
+                      placeholderText="select start date..."
+                    />
                   </Col>
                   <Col md="4" className="col-example">
-                    <p>End Date:</p>
-                    <DatePicker selected={endDate} onChange={handleEndDate} />
+                    <h4>End Date</h4>
+                    <DatePicker
+                      selected={endDateTracker}
+                      popperPlacement="top-end"
+                      placeholderText="select end date..."
+                      onChange={handleEndDate}
+                    />
                   </Col>
                   <Col md="4" className="col-example">
-                    <p>Language:</p>
+                    <h4>Language</h4>
                     <DropdownButton
                       id="dropdown-item-button"
                       title={languageTitle}
@@ -144,33 +153,59 @@ const Filter = (props) => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md="4" className="col-example">
-                    <p>Forks Count:</p>
-                    {/* <NumericInput
+                  <Col md="4">
+                    <h4>Forks Count</h4>
+                  </Col>
+                  <Col md="4">
+                    <h4>Open Issues Count</h4>
+                  </Col>
+                  <Col md="4">
+                    <h4>License</h4>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md="2" className="col-example">
+                    <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
                       min={0}
-                      className="form-control"
                       onChange={Change}
-                    /> */}
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
-                      onChange={Change}
+                      variant={"primary"}
+                      size="sm"
+                      value={"min"}
                     />
                   </Col>
-                  <Col md="4" className="col-example">
-                    <p>Open Issues Count:</p>
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
+
+                  <Col md="2" className="col-example">
+                    <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      onChange={(num) => console.log(num)}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
                       onChange={Change2}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      variant={"primary"}
+                      size="sm"
                     />
                   </Col>
                   <Col md="4" className="col-example">
-                    <p>License:</p>
                     <DropdownButton
                       id="dropdown-item-button"
                       title={licenseTitle}
@@ -189,46 +224,100 @@ const Filter = (props) => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md="4" className="col-example">
-                    <p>Stargazers Count:</p>
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
+                  <Col md="4">
+                    <h4>Stargazers Count</h4>
+                  </Col>
+                  <Col md="4">
+                    <h4>Comments</h4>
+                  </Col>
+                  <Col md="4"></Col>
+                </Row>
+                <Row>
+                  <Col md="2" className="col-example">
+                  <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
                       onChange={Change3}
+                      variant={"primary"}
+                      size="sm"
                     />
                   </Col>
-                  <Col md="4" className="col-example">
-                    <p>Number of Comments:</p>
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
+                  <Col md="2" className="col-example">
+                  <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
                       onChange={handleNumOfComments}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      variant={"primary"}
+                      size="sm"
                     />
                   </Col>
                 </Row>
                 <Row>
-                  <Col md="4" className="col-example">
-                    <p>Watchers Count:</p>
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
+                  <Col md="4">
+                    <h4>Watchers Count</h4>
+                  </Col>
+                  <Col md="4">
+                    <h4>Number of Ratings</h4>
+                  </Col>
+                  <Col md="4"></Col>
+                </Row>
+                <Row>
+                  <Col md="2" className="col-example">
+                  <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
                       onChange={Change4}
+                      variant={"primary"}
+                      size="sm"
                     />
                   </Col>
-                  <Col md="4" className="col-example">
-                    <p>Number of Ratings:</p>
-                    <MDBInput
-                      min="0"
-                      className="form-control"
-                      id="typeNumber"
-                      type="number"
+                  <Col md="2" className="col-example">
+                  <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>min:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
                       onChange={handleNumOfRatings}
+                      variant={"primary"}
+                      size="sm"
+                    />
+                  </Col>
+                  <Col md="2" className="col-example">
+                  <h5>max:</h5>
+                    <InputSpinner
+                      type={"natural"}
+                      min={0}
+                      variant={"primary"}
+                      size="sm"
                     />
                   </Col>
                   <Col md="4" className="filtered-search">
