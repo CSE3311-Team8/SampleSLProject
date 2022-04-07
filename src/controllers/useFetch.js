@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import pkg from "aws-sdk";
 
 const { config, DynamoDB } = pkg;
-const { unmarshall } = require("@aws-sdk/util-dynamodb");
+//const { unmarshall } = require("@aws-sdk/util-dynamodb");
 
 const useFetch = (repository, word) => {
   //const pageLimit = 40;
@@ -21,7 +21,8 @@ const useFetch = (repository, word) => {
       region: "",
       endpoint: "",
     });
-    const dynamoDB = new DynamoDB();
+    //console.log("word in useEffect is " + word)
+   // const dynamoDB = new DynamoDB();
 
     if (repository === "GitHub" && word !== "") {
       /**************This method of scanning/searching in description works******/
@@ -29,7 +30,7 @@ const useFetch = (repository, word) => {
       const params = {
         TableName: "GitHubProject",
         ScanIndexForward: true,
-        Limit: 15,
+      
         FilterExpression: "contains(#DYNOBASE_Description, :Description)",
         ExpressionAttributeNames: {
           "#DYNOBASE_Description": "Description",
@@ -41,33 +42,35 @@ const useFetch = (repository, word) => {
 
       async function fetchData() {
         const results = await documentClient.scan(params).promise().catch(err => console.log(err));
-        //console.log(results.Items);
-        //setItems(results.Items);
+        console.log(results);
+        setItems(results.Items);
         setLoading(false);
       }
       fetchData();
 
      
-    } else if (repository === "MATC") {
-      async function queryWithPartiQL2({ search }) {
-        const statement = `SELECT * FROM MATCProject WHERE "downloads" > '${word}'`;
-        const results = await dynamoDB
-          .executeStatement({ Statement: statement })
-          .promise()
-          .catch((err) => console.log(err));
+    } else if (repository === "MATC" && word !=="") {
+      const documentClient = new DynamoDB.DocumentClient();
+      const params = {
+        TableName: "MATCProject",
+        ScanIndexForward: true,
+        
+        FilterExpression: "contains(#DYNOBASE_summary, :summary)",
+        ExpressionAttributeNames: {
+          "#DYNOBASE_summary": "summary",
+        },
+        ExpressionAttributeValues: {
+          ":summary": `${word}`,
+        },
+      };
 
-        //console.log(results.Items.length);
-        let tracker = [];
-        var i = 0;
-        //get size of object so you can loop through exactly
-        //for (i = 0; i < results.Items.length; i++) {
-          //tracker.push(unmarshall(results.Items[i]));
-        //}
-        //console.log(tracker);
-        //setItems(tracker);
+      async function fetchData() {
+        const results = await documentClient.scan(params).promise().catch(err => console.log(err));
+        console.log(results);
+        setItems(results.Items);
+        setLoading(false);
       }
-
-      queryWithPartiQL2({ word });
+      fetchData();
       setLoading(false);
     } else if (repository === "TYPE") {
       alert("Select repository type to begin search...");

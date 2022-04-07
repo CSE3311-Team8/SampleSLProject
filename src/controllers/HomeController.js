@@ -9,9 +9,11 @@ const Home = (props) => {
 
   const word =props.string;
   const database = props.string2;
-  
+  //console.log(word);
   //will display a load effect between searches
   const {isLoading, datas} = useFetch(database, word);
+
+  //console.log(datas);
 
   //the prop "word" comes from search bar and will be 
   //the filtering parameter used for project filtering

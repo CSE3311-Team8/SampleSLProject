@@ -1,195 +1,190 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 .App {
-  
   max-width: auto;
-  
 }
-html{
+html {
   background-color: #dde6ee;
 }
-div#root{
+div#root {
   background-color: #dde6ee;
 }
 .App input {
-  font-size: "16px";  
-  width:60%; 
+  font-size: "16px";
+  width: 60%;
   color: #345beb;
 }
 
 .App h2 {
-
-  margin-top: 10%;
+  margin-top: 5%;
 
   text-align: center;
   font-size: 60px;
-  color:#345beb;
+  color: #345beb;
   margin-bottom: 5%;
 }
-
-.preview p{
-  font-size: 18px;
+.App h4 {
   
-  color:#3633FF;
+  
+  color: #337ab7;
+  margin-bottom: 5%;
+}
+.App h5 {
+  
+  
+  color: #1a466d;
+
+}
+
+.preview p {
+  font-size: 18px;
+
+  color: #3633ff;
   margin-top: 1%;
   margin-bottom: 4%;
 }
 
-.preview h1{
+.preview h1 {
   font-size: 16px;
-  color:#337ab7;
+  color: #337ab7;
   font-weight: bold;
 }
 
-
-
-
-div.col-example.col-md-4{
-
-  
-  text-align: center;
-  margin-bottom: 3%;
-}
 
 td.url {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color: #345beb;
   text-decoration: underline;
+}
+td.ratings {
+  font-weight: bold;
+  font-size: 16px;
+  color: #345beb;
+ 
 }
 
 td.date-created {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color: #345beb;
 }
 td.date-updated {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color: #345beb;
 }
 
 td.name {
   font-weight: bold;
   font-size: 16px;
-  color:#345beb;
+  color: #345beb;
 }
 
-th.header{
+th.header {
   font-weight: bold;
   font-size: 16px;
-  color:#337ab7;
+  color: #337ab7;
 
-  width: 20%;
+  width: 16%;
 }
-div.preview{
-
+div.preview {
   margin-bottom: 6%;
 }
 
-div.date.row{
+div.date.row {
   margin-top: 5%;
-  
 }
 
 button.loader {
-
   margin-bottom: 10%;
 }
 
-div.dropdown{
-
- 
-
-  text-align: right;
+div.dropdown {
+  text-align: center;
 }
 
-div.search.row{
+div.search.row {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 5%;
-  
 }
-div.search.row.dropdown {
+div.col-example.col-md-2{
 
+  text-align: center;
+  
+ 
+  color: #345beb;
+  border: 2px #345beb;
+
+  margin-bottom: 4%;
+}
+
+
+div.search.row.dropdown {
   pointer-events: none;
 }
-
 
 Table {
   border-radius: 1%;
   background-color: rgb(187, 209, 233);
-  
+
   border: 2px #345beb;
   width: auto;
   height: auto;
 }
 
-
- 
-
-div.description.row{
+div.description.row {
   width: auto;
 }
 
-td.description{
+td.description {
   margin-top: 2%;
 }
 
-
-td.model-files{
-  overflow: hidden; 
+td.model-files {
+  overflow: hidden;
   word-wrap: break-word;
 }
 
- div.repositories.col-md-11{
+div.repositories.col-md-11 {
   text-align: left;
 }
 
-div.col-md-1{
+div.col-md-1 {
   text-align: right;
-  
-} 
+}
 
-div.filtered-search.col-md-4{
-
- 
+div.filtered-search.col-md-4 {
 
   margin-top: 4%;
   text-align: right;
 }
 
-div.closeButton{
+div.closeButton {
   text-align: right;
 }
 
-h1{
-  color:#345beb;
+h1 {
+  color: #345beb;
   text-align: center;
 }
 
-
-
-div.modalBackground{
+div.modalBackground {
   display: flex;
   align-items: center;
   justify-content: center;
 
   margin-bottom: 3%;
-
 }
-.modalBackground{
+.modalBackground {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .modalContainer {
-
-
-  width: 65%;
+  width: 70%;
   height: 50%;
 
   border-radius: 1%;
@@ -202,12 +197,35 @@ div.modalBackground{
   padding: 1%;
 }
 
-div.col-example.col-md-4{
+div.col-example.col-md-4 {
   margin-top: 1%;
   margin-bottom: 2%;
+  
 }
 
-div.closeButton button{
+div.closeButton button {
   background-color: rgb(177, 6, 6);
+}
 
+div.col-md-4{  
+  text-align: center;
+ 
+  font-size: medium;
+  color: #345beb;}
+
+input#typeNumber.form-control{
+  background-color: #dde6ee;
+}
+div.form-outline{
+  background-color: #dde6ee;
+}
+div.react-datepicker_input-container{
+  background-color: #dde6ee;
+}
+
+input.form-control{
+
+  font-size: large;
+  font-weight: bold;
+  color: #345beb;
 }

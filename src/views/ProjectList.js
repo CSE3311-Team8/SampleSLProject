@@ -16,7 +16,7 @@ const ProjectList = (props) => {
     setVisible(Visible + 25);
   };
 
-  //console.log(data.length);
+//console.log(data.length);
 
   return (
     <div className="search-items">
@@ -33,6 +33,7 @@ const ProjectList = (props) => {
                     <th className="header">Owner Page</th>
                     <th className="header">Created On</th>
                     <th className="header">Updated On</th>
+                    <th className="header">Ratings</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -63,6 +64,7 @@ const ProjectList = (props) => {
                         item.updated || item.updated_at
                       ).toLocaleDateString()}
                     </td>
+                    <td className="ratings">{item.no_of_ratings || item.no_of_ratings}</td>
                   </tr>
                   <tr>
                     <td className="description" align="center" colSpan={"12"}>
@@ -76,18 +78,17 @@ const ProjectList = (props) => {
                   <tr className="attributes">
                     <td>
                       <h1 className="headers">
-                        watchers count :{" "}
-                        {item.no_of_ratings || item.watchers_count}
+                        watchers : {item.watchers_count || "0"}
                       </h1>
                     </td>
                     <td>
                       <h1 className="headers">
-                        language : {item.language || "Matlab"}
+                        language : {item.language || "MATLAB"}
                       </h1>
                     </td>
                     <td>
                       <h1 className="headers">
-                        forks count : {item.forks_count || item.downloads}
+                        forks : {item.forks_count || item.downloads}
                       </h1>
                     </td>
                     <td>
@@ -95,8 +96,12 @@ const ProjectList = (props) => {
                     </td>
                     <td>
                       <h1 className="headers">
-                        stargazers count :{" "}
-                        {item.no_of_comments || item.stargazers_count}
+                        stargazers : {item.stargazers_count || "0"}
+                      </h1>
+                    </td>
+                    <td>
+                      <h1 className="headers">
+                        comments : {item.no_of_comments || "0"}
                       </h1>
                     </td>
                   </tr>

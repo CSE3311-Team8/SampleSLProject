@@ -7,16 +7,15 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import DateObject from "react-date-object";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
 import Home from "./controllers/HomeController";
 import Filter from "./views/Filter";
 import FilterController from "./controllers/FilterController";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 //test comment
 
@@ -31,79 +30,104 @@ function App() {
   const [filterRepo, setFilterRepo] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
   const [filterWatch, setFilterWatch] = useState(false);
+  const [filterTracker, setFilterTracker] = useState(false);
   const [forksCount, setForksCount] = useState(0);
   const [openIssuesCount, setOpenIssuesCount] = useState(0);
   const [starGazersCount, setStarGazersCount] = useState(0);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new DateObject(""));
+  const [startDates, setStartDates] = useState(new DateObject(""));
+  const [endDate, setEndDate] = useState(new DateObject(""));
+  const [endDates, setEndDates] = useState(new DateObject(""));
   const [watchersCount, setWatchersCount] = useState(0);
-  const [endDate, setEndDate] = useState(new Date());
   const [language, setLanguage] = useState("");
   const [license, setLicense] = useState("");
   const [numberOfComments, setNumberOfComments] = useState(0);
   const [numberOfRatings, setNumberOfRatings] = useState(0);
+  //const [maxforksCount, setMaxForksCount] = useState(0);
+  //const [maxopenIssuesCount, setMaxOpenIssuesCount] = useState(0);
+  // // const [maxstarGazersCount, setMaxStarGazersCount] = useState(0);
+  // // const [maxwatchersCount, setMaxWatchersCount] = useState(0);
+  // // const [maxnumberOfComments, setMaxNumberOfComments] = useState(0);
+  // // const [maxnumberOfRatings, setMaxNumberOfRatings] = useState(0);
   const [languageTitle, setLanguageTitle] = useState("");
   const [licenseTitle, setLicenseTitle] = useState("");
-
 
   //search bar title
   const header = "Simulink Search";
   const handleSelect = (event) => {
-    //every time repository changes everything has to change
-    //document.getElementsByTagName("input")[0].value = "";
-
     setRepository(event);
   };
 
-  //
   const setter = () => {
     setOpenFilter(false);
-    console.log(openFilter);
+    //console.log(openFilter);
+  };
+  const start_date_setter = (event) => {
+    const date = new DateObject(event);
+    const middleMan = date.format("YYYY-MM-DD hh:mm:ss.SSSSSS");
+    //console.log(middleMan);
+    setStartDate(middleMan);
+  };
+  const end_date_setter = (event) => {
+    const date = new DateObject(event);
+    const middleMan = date.format("YYYY-MM-DD hh:mm:ss.SSSSSS");
+    //console.log(middleMan);
+    setEndDate(middleMan);
+  };
+  const language_setter = (event) => {
+    setLanguage(event);
+    //console.log(language);
   };
   function forks_count_setter(value) {
-    console.log(forksCount);
+    //console.log(forksCount);
     setForksCount(value);
   }
   const open_issues_count_setter = (value) => {
-    console.log(openIssuesCount);
+    //console.log(openIssuesCount);
     setOpenIssuesCount(value);
+  };
+
+  const license_setter = (event) => {
+    //console.log(license);
+    setLicense(event);
   };
   const stargazers_count_setter = (event) => {
     setStarGazersCount(event);
   };
-  const watchers_count_setter = (event) => {
-    setWatchersCount(event);
-  };
-  const end_date_setter = (event) => {
-    setEndDate(event);
-  };
-  const language_setter = (event) => {
-    
-    setLanguage(event);
-    console.log(language);
-  };
-  const license_setter = (event) => {
-    console.log(license);
-    setLicense(event);
-  };
   const number_of_comments_setter = (event) => {
     setNumberOfComments(event);
   };
-  const number_of_ratintgs_setter = (event) => {
+  const number_of_ratings_setter = (event) => {
     setNumberOfRatings(event);
   };
+  const watchers_count_setter = (event) => {
+    setWatchersCount(event);
+  };
+  // function max_forks_count_setter(value) {
+  //   //console.log(maxforksCount);
+  //   setMaxForksCount(value);
+  // }
+  // const max_open_issues_count_setter = (value) => {
+  //   //console.log(maxopenIssuesCount);
+  //   setMaxOpenIssuesCount(value);
+  // };
+  // const max_stargazers_count_setter = (event) => {
+  //   setMaxStarGazersCount(event);
+  // };
+  // const max_number_of_comments_setter = (event) => {
+  //   setMaxNumberOfComments(event);
+  // };
+  // const max_watchers_count_setter = (event) => {
+  //   setMaxWatchersCount(event);
+  // };
+  // const max_number_of_ratings_setter = (event) => {
+  //   setMaxNumberOfRatings(event);
+  // };
   const language_title_setter = (event) => {
     setLanguageTitle(event);
   };
   const license_title_setter = (event) => {
     setLicenseTitle(event);
-  };
-  const start_date_setter = (event) => {
-    setStartDate(event);
-  };
-
-  const searchBarSetter = () => {
-    setSearchWord(searchWord);
-    //setOpenFilter(false);
   };
 
   //this function handles the input form
@@ -121,12 +145,17 @@ function App() {
 
   const handleFilter = () => {
     //will clear search bar when filter button is clicked
-
     //this triggers the intial fetch, find wher it
     setOpenFilter(true); //opens filter modal
     setFilterSearchWord(tempSearchWord);
     setFilterRepo(repository);
+    if (filterTracker === true) {
+      setFilterTracker(false);
+    } else if (filterTracker === false) {
+      setFilterTracker(true);
+    }
     setFilterWatch(true);
+
   };
 
   ///onClick for for x button, set everything to null
@@ -159,7 +188,7 @@ function App() {
             </Dropdown.Item>
           </DropdownButton>
         </Col>
-        <Col md={10} className="repositories">
+        <Col md={8} className="repositories">
           <Form>
             <FormGroup>
               <InputGroup>
@@ -211,9 +240,15 @@ function App() {
                 language={language_setter}
                 license={license_setter}
                 number_of_comments={number_of_comments_setter}
-                number_of_ratings={number_of_ratintgs_setter}
+                number_of_ratings={number_of_ratings_setter}
                 language_title={language_title_setter}
                 license_title={license_title_setter}
+                max_forks_count={forks_count_setter}
+                max_open_issues_count={open_issues_count_setter}
+                max_stargazers_count={stargazers_count_setter}
+                max_watchers_count={watchers_count_setter}
+                max_number_of_comments={number_of_comments_setter}
+                max_number_of_ratings={number_of_ratings_setter}
               />
               <FilterController
                 repository={filterRepo}
@@ -228,6 +263,7 @@ function App() {
                 number_of_comments={numberOfComments}
                 watchers_count={watchersCount}
                 number_of_ratings={numberOfRatings}
+                filterState={filterTracker}
               />
             </>
           )}
