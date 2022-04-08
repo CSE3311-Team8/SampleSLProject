@@ -39,10 +39,6 @@ const useFilterFetch = (
       endpoint: "dynamodb.us-east-1.amazonaws.com",
     });
 
-    console.log(max_forks_count);
-    console.log(max_open_issues_count);
-    console.log(max_watchers_count);
-    console.log(max_stargazers_count);
 
     /*************This method uses standard SQL SELECT statements, it returns a dynamobd ojbect*/
     /*Dynamodb object must be unmarshalled into standard JSON format for this project to work*/

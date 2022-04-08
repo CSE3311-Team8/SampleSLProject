@@ -100,7 +100,7 @@ function App() {
   const number_of_ratings_setter = (event) => {
 
     setNumberOfRatings(event);
-    console.log(numberOfRatings);
+    //console.log(numberOfRatings);
   };
   const watchers_count_setter = (event) => {
     setWatchersCount(event);
