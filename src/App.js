@@ -43,12 +43,12 @@ function App() {
   const [license, setLicense] = useState("");
   const [numberOfComments, setNumberOfComments] = useState(0);
   const [numberOfRatings, setNumberOfRatings] = useState(0);
-  //const [maxforksCount, setMaxForksCount] = useState(0);
-  //const [maxopenIssuesCount, setMaxOpenIssuesCount] = useState(0);
-  // // const [maxstarGazersCount, setMaxStarGazersCount] = useState(0);
-  // // const [maxwatchersCount, setMaxWatchersCount] = useState(0);
-  // // const [maxnumberOfComments, setMaxNumberOfComments] = useState(0);
-  // // const [maxnumberOfRatings, setMaxNumberOfRatings] = useState(0);
+  const [maxforksCount, setMaxForksCount] = useState(0);
+  const [maxopenIssuesCount, setMaxOpenIssuesCount] = useState(0);
+  const [maxstarGazersCount, setMaxStarGazersCount] = useState(0);
+  const [maxwatchersCount, setMaxWatchersCount] = useState(0);
+  const [maxnumberOfComments, setMaxNumberOfComments] = useState(0);
+  const [maxnumberOfRatings, setMaxNumberOfRatings] = useState(0);
   const [languageTitle, setLanguageTitle] = useState("");
   const [licenseTitle, setLicenseTitle] = useState("");
 
@@ -98,31 +98,33 @@ function App() {
     setNumberOfComments(event);
   };
   const number_of_ratings_setter = (event) => {
+
     setNumberOfRatings(event);
+    console.log(numberOfRatings);
   };
   const watchers_count_setter = (event) => {
     setWatchersCount(event);
   };
-  // function max_forks_count_setter(value) {
-  //   //console.log(maxforksCount);
-  //   setMaxForksCount(value);
-  // }
-  // const max_open_issues_count_setter = (value) => {
-  //   //console.log(maxopenIssuesCount);
-  //   setMaxOpenIssuesCount(value);
-  // };
-  // const max_stargazers_count_setter = (event) => {
-  //   setMaxStarGazersCount(event);
-  // };
-  // const max_number_of_comments_setter = (event) => {
-  //   setMaxNumberOfComments(event);
-  // };
-  // const max_watchers_count_setter = (event) => {
-  //   setMaxWatchersCount(event);
-  // };
-  // const max_number_of_ratings_setter = (event) => {
-  //   setMaxNumberOfRatings(event);
-  // };
+  function max_forks_count_setter(value) {
+    //console.log(maxforksCount);
+    setMaxForksCount(value);
+  }
+  const max_open_issues_count_setter = (value) => {
+    //console.log(maxopenIssuesCount);
+    setMaxOpenIssuesCount(value);
+  };
+  const max_stargazers_count_setter = (event) => {
+    setMaxStarGazersCount(event);
+  };
+  const max_number_of_comments_setter = (event) => {
+    setMaxNumberOfComments(event);
+  };
+  const max_watchers_count_setter = (event) => {
+    setMaxWatchersCount(event);
+  };
+  const max_number_of_ratings_setter = (event) => {
+    setMaxNumberOfRatings(event);
+  };
   const language_title_setter = (event) => {
     setLanguageTitle(event);
   };
@@ -243,12 +245,12 @@ function App() {
                 number_of_ratings={number_of_ratings_setter}
                 language_title={language_title_setter}
                 license_title={license_title_setter}
-                max_forks_count={forks_count_setter}
-                max_open_issues_count={open_issues_count_setter}
-                max_stargazers_count={stargazers_count_setter}
-                max_watchers_count={watchers_count_setter}
-                max_number_of_comments={number_of_comments_setter}
-                max_number_of_ratings={number_of_ratings_setter}
+                max_forks_count={max_forks_count_setter}
+                max_open_issues_count={max_open_issues_count_setter}
+                max_stargazers_count={max_stargazers_count_setter}
+                max_watchers_count={max_watchers_count_setter}
+                max_number_of_comments={max_number_of_comments_setter}
+                max_number_of_ratings={max_number_of_ratings_setter}
               />
               <FilterController
                 repository={filterRepo}
@@ -264,6 +266,12 @@ function App() {
                 watchers_count={watchersCount}
                 number_of_ratings={numberOfRatings}
                 filterState={filterTracker}
+                max_forks_count = {maxforksCount}
+                max_open_issues_count = {maxopenIssuesCount}
+                max_stargazers_count ={maxstarGazersCount}
+                max_watchers_count = {maxwatchersCount}
+                max_number_of_comments = {maxnumberOfComments}
+                max_number_of_ratings = {maxnumberOfRatings}
               />
             </>
           )}

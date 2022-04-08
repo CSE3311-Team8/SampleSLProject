@@ -20,50 +20,51 @@ const Filter = (props) => {
   const [dateTracker, setDateTracker] = useState();
   const [endDateTracker, setEndDateTracker] = useState();
 
-  // const upadater = document.querySelectorAll('.form-outline').forEach((formOutline) => {
-  //   new NumericInput(formOutline).update();
-  // });
-
   //these functions handle the what happens when new value is selected from menu
-  function Change(event) {
-    //setForksCount(value);
-    //console.log(event.target.value);
+  function handleForksCount(event) {
+    console.log(event);
 
     props.forks_count(event);
   }
-  function Change2(event) {
-    //setOpenIssuesCount(value);
-    //console.log(openIssuesCount);
+  function handleOpenIssuesCount(event) {
     props.open_issues_count(event);
   }
-  function Change3(event) {
-    //setStarGazersCount(value);
-    //console.log(starGazersCount);
+  function handleStargazersCount(event) {
     props.stargazers_count(event);
   }
-  function Change4(event) {
-    //setWatchersCount(value);
-    //console.log(watchersCount);
+  function handleWatchersCount(event) {
     props.watchers_count(event);
   }
 
   function handleNumOfComments(event) {
-    //setNumberOfComments(value);
-    //console.log(numberOfComments);
     props.number_of_comments(event);
   }
   function handleNumOfRatings(event) {
-    //setNumberOfRatings(value);
-    //console.log(numberOfRatings);
     props.number_of_ratings(event);
+  }
+  function handleMaxForksCount(event) {
+    console.log(event);
+
+    props.max_forks_count(event);
+  }
+  function handleMaxOpenIssuesCount(event) {
+    props.max_open_issues_count(event);
+  }
+  function handleMaxStargazersCount(event) {
+    props.max_stargazers_count(event);
+  }
+  function handleMaxWatchersCount(event) {
+    props.max_watchers_count(event);
+  }
+
+  function handleMaxNumOfComments(event) {
+    props.max_number_of_comments(event);
+  }
+  function handleMaxNumOfRatings(event) {
+    props.max_number_of_ratings(event);
   }
 
   const handleLanguageSelect = (event) => {
-    //every time repository changes everything has to change
-    //document.getElementsByTagName("input")[0].value = "";
-    //setLanguageTitle(event);
-    //setLanguage(event);
-    //console.log(language);
     setLanguageTitle(event);
     props.language(event);
     props.language_title(event);
@@ -71,21 +72,12 @@ const Filter = (props) => {
   const handleStartDate = (event) => {
     setDateTracker(event);
     props.start_date(event);
-    //log(startDate);
   };
   const handleEndDate = (event) => {
-    //every time repository changes everything has to change
-    //document.getElementsByTagName("input")[0].value = "";
-    //setEndDate(event);
     setEndDateTracker(event);
     props.end_date(event);
   };
   const handleLicenseSelect = (event) => {
-    //every time repository changes everything has to change
-    //document.getElementsByTagName("input")[0].value = "";
-    //setLicenseTitle(event);
-    //setLicense(event);
-    //console.log(license)
     setLicenseTitle(event);
     props.license(event);
     props.license_title(event);
@@ -169,7 +161,7 @@ const Filter = (props) => {
                     <InputSpinner
                       type={"natural"}
                       min={0}
-                      onChange={Change}
+                      onChange={handleForksCount}
                       variant={"primary"}
                       size="sm"
                       value={"min"}
@@ -181,26 +173,27 @@ const Filter = (props) => {
                     <InputSpinner
                       type={"natural"}
                       min={0}
-                      onChange={(num) => console.log(num)}
+                      onChange={handleMaxForksCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>min:</h5>
+                    <h5>min:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
-                      onChange={Change2}
+                      onChange={handleOpenIssuesCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>max:</h5>
+                    <h5>max:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
+                      onChange={handleMaxOpenIssuesCount}
                       variant={"primary"}
                       size="sm"
                     />
@@ -234,26 +227,27 @@ const Filter = (props) => {
                 </Row>
                 <Row>
                   <Col md="2" className="col-example">
-                  <h5>min:</h5>
+                    <h5>min:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
-                      onChange={Change3}
+                      onChange={handleStargazersCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>max:</h5>
+                    <h5>max:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
+                      onChange={handleMaxStargazersCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>min:</h5>
+                    <h5>min:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
@@ -263,10 +257,11 @@ const Filter = (props) => {
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>max:</h5>
+                    <h5>max:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
+                      onChange={handleMaxNumOfComments}
                       variant={"primary"}
                       size="sm"
                     />
@@ -283,26 +278,27 @@ const Filter = (props) => {
                 </Row>
                 <Row>
                   <Col md="2" className="col-example">
-                  <h5>min:</h5>
+                    <h5>min:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
-                      onChange={Change4}
+                      onChange={handleWatchersCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>max:</h5>
+                    <h5>max:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
+                      onChange={handleMaxWatchersCount}
                       variant={"primary"}
                       size="sm"
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>min:</h5>
+                    <h5>min:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
@@ -312,10 +308,11 @@ const Filter = (props) => {
                     />
                   </Col>
                   <Col md="2" className="col-example">
-                  <h5>max:</h5>
+                    <h5>max:</h5>
                     <InputSpinner
                       type={"natural"}
                       min={0}
+                      onChange={handleMaxNumOfRatings}
                       variant={"primary"}
                       size="sm"
                     />

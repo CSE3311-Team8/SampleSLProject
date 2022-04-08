@@ -16,10 +16,8 @@ const useFetch = (repository, word) => {
   //will execute function when data is updated
   useEffect(() => {
     config.update({
-      accessKeyId: "",
-      secretAccessKey: "",
-      region: "",
-      endpoint: "",
+      region: "us-east-1",
+      endpoint: "dynamodb.us-east-1.amazonaws.com",
     });
     //console.log("word in useEffect is " + word)
    // const dynamoDB = new DynamoDB();
@@ -30,11 +28,7 @@ const useFetch = (repository, word) => {
       const params = {
         TableName: "GitHubProject",
         ScanIndexForward: true,
-      
-        FilterExpression: "contains(#DYNOBASE_Description, :Description)",
-        ExpressionAttributeNames: {
-          "#DYNOBASE_Description": "Description",
-        },
+        FilterExpression: "contains(Description, :Description) OR contains(title, :Description) OR contains(repo_name, :Description)",
         ExpressionAttributeValues: {
           ":Description": `${word}`,
         },
@@ -55,10 +49,8 @@ const useFetch = (repository, word) => {
         TableName: "MATCProject",
         ScanIndexForward: true,
         
-        FilterExpression: "contains(#DYNOBASE_summary, :summary)",
-        ExpressionAttributeNames: {
-          "#DYNOBASE_summary": "summary",
-        },
+        FilterExpression: "contains(summary, :summary) OR contains(category, :summary) OR contains(content, :summary)",
+      
         ExpressionAttributeValues: {
           ":summary": `${word}`,
         },
