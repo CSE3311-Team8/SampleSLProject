@@ -22,7 +22,7 @@ const Filter = (props) => {
 
   //these functions handle the what happens when new value is selected from menu
   function handleForksCount(event) {
-    console.log(event);
+    //console.log(event);
 
     props.forks_count(event);
   }
@@ -87,7 +87,7 @@ const Filter = (props) => {
     /*********************filter modal**********************/
     <div className="Home">
       {props.filterState === true && (
-        <div className="modalBackground">
+        <><h1>Filter</h1><div className="modalBackground">
           <div className="modalContainer">
             <div className="title">
               <div className="closeButton">
@@ -101,7 +101,7 @@ const Filter = (props) => {
                 </Button>
               </div>
               <div className="titleValue">
-                <h1>Filter</h1>
+
               </div>
             </div>
             <div className="body">
@@ -112,18 +112,16 @@ const Filter = (props) => {
                     <DatePicker
                       selected={dateTracker}
                       onChange={handleStartDate}
-                      popperPlacement="top-end"
-                      placeholderText="select start date..."
-                    />
+                      popperPlacement="left-end"
+                      placeholderText="select start date..." />
                   </Col>
                   <Col md="4" className="col-example">
                     <h4>End Date</h4>
                     <DatePicker
                       selected={endDateTracker}
-                      popperPlacement="top-end"
+                      popperPlacement="right-end"
                       placeholderText="select end date..."
-                      onChange={handleEndDate}
-                    />
+                      onChange={handleEndDate} />
                   </Col>
                   <Col md="4" className="col-example">
                     <h4>Language</h4>
@@ -164,8 +162,7 @@ const Filter = (props) => {
                       onChange={handleForksCount}
                       variant={"primary"}
                       size="sm"
-                      value={"min"}
-                    />
+                      value={"min"} />
                   </Col>
 
                   <Col md="2" className="col-example">
@@ -175,8 +172,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxForksCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>min:</h5>
@@ -185,8 +181,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleOpenIssuesCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>max:</h5>
@@ -195,8 +190,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxOpenIssuesCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="4" className="col-example">
                     <DropdownButton
@@ -233,8 +227,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleStargazersCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>max:</h5>
@@ -243,8 +236,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxStargazersCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>min:</h5>
@@ -253,8 +245,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleNumOfComments}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>max:</h5>
@@ -263,8 +254,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxNumOfComments}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                 </Row>
                 <Row>
@@ -284,8 +274,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleWatchersCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>max:</h5>
@@ -294,8 +283,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxWatchersCount}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>min:</h5>
@@ -304,8 +292,7 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleNumOfRatings}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="2" className="col-example">
                     <h5>max:</h5>
@@ -314,24 +301,23 @@ const Filter = (props) => {
                       min={0}
                       onChange={handleMaxNumOfRatings}
                       variant={"primary"}
-                      size="sm"
-                    />
+                      size="sm" />
                   </Col>
                   <Col md="4" className="filtered-search">
                     {/* <Button
-                      className="search-button"
-                      variant="contained"
-                      size="medium"
-                      onClick={sendIt}
-                    >
-                      Filtered Search
-                    </Button> */}
+      className="search-button"
+      variant="contained"
+      size="medium"
+      onClick={sendIt}
+    >
+      Filtered Search
+    </Button> */}
                   </Col>
                 </Row>
               </Container>
             </div>
           </div>
-        </div>
+        </div></>
       )}
     </div>
   );

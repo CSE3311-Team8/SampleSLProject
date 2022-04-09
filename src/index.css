@@ -11,7 +11,7 @@ div#root {
 }
 .App input {
   font-size: "16px";
-  width: 60%;
+ 
   color: #345beb;
 }
 
@@ -24,67 +24,61 @@ div#root {
   margin-bottom: 5%;
 }
 .App h4 {
-  
-  
-  color: #337ab7;
+  color: #2d5374;
   margin-bottom: 5%;
 }
 .App h5 {
-  
-  
   color: #1a466d;
-
 }
 
 .preview p {
   font-size: 18px;
 
-  color: #3633ff;
+  color: #050505;
+  font-weight: bold;
   margin-top: 1%;
   margin-bottom: 4%;
 }
 
 .preview h1 {
   font-size: 16px;
-  color: #337ab7;
+  color: #1521c0;
   font-weight: bold;
 }
-
 
 td.url {
   font-weight: bold;
   font-size: 16px;
-  color: #345beb;
+  color: #1521c0;
   text-decoration: underline;
 }
 td.ratings {
   font-weight: bold;
   font-size: 16px;
-  color: #345beb;
- 
+  color: #1521c0;
 }
 
 td.date-created {
   font-weight: bold;
   font-size: 16px;
-  color: #345beb;
+  color: #1521c0;
 }
 td.date-updated {
   font-weight: bold;
   font-size: 16px;
-  color: #345beb;
+  color: #1521c0;
 }
 
 td.name {
   font-weight: bold;
   font-size: 16px;
-  color: #345beb;
+  color: #1521c0;
 }
 
 th.header {
   font-weight: bold;
   font-size: 16px;
-  color: #337ab7;
+  color: #1521c0;
 
   width: 16%;
 }
@@ -93,7 +87,7 @@ div.preview {
 }
 
 div.date.row {
-  margin-top: 5%;
+  margin-top: 1%;
 }
 
 button.loader {
@@ -108,19 +102,16 @@ div.search.row {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
-div.col-example.col-md-2{
-
+div.col-example.col-md-2 {
   text-align: center;
-  
- 
+
   color: #345beb;
   border: 2px #345beb;
 
   margin-bottom: 4%;
 }
-
 
 div.search.row.dropdown {
   pointer-events: none;
@@ -157,7 +148,6 @@ div.col-md-1 {
 }
 
 div.filtered-search.col-md-4 {
-
   margin-top: 4%;
   text-align: right;
 }
@@ -184,8 +174,7 @@ div.modalBackground {
   justify-content: center;
 }
 .modalContainer {
-  width: 80%;
-  height: 50%;
+  width: 82%;
 
   border-radius: 1%;
 
@@ -196,35 +185,56 @@ div.modalBackground {
 
   padding: 1%;
 }
+div.modalBackgroundAdvanced {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 3%;
+}
+.modalBackgroundAdvanced {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainerAdvanced {
+  border-radius: 1%;
+  width: 85%;
+  background-color: rgb(163, 201, 241);
+  box-shadow: rgba(135, 166, 223, 0.315) 0% 1% 2%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 1%;
+}
 
 div.col-example.col-md-4 {
   margin-top: 1%;
   margin-bottom: 2%;
-  
 }
 
 div.closeButton button {
   background-color: rgb(177, 6, 6);
 }
 
-div.col-md-4{  
+div.col-md-4 {
   text-align: center;
- 
+
   font-size: medium;
-  color: #345beb;}
-
-input#typeNumber.form-control{
-  background-color: #dde6ee;
-}
-div.form-outline{
-  background-color: #dde6ee;
-}
-div.react-datepicker_input-container{
-  background-color: #dde6ee;
+  color: #345beb;
 }
 
-input.form-control{
+input#typeNumber.form-control {
+  background-color: #dde6ee;
+}
+div.form-outline {
+  background-color: #dde6ee;
+}
+div.react-datepicker_input-container {
+  background-color: #dde6ee;
+}
 
+input.form-control {
   font-size: large;
   font-weight: bold;
   color: #345beb;

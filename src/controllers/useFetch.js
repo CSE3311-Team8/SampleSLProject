@@ -36,7 +36,7 @@ const useFetch = (repository, word) => {
 
       async function fetchData() {
         const results = await documentClient.scan(params).promise().catch(err => console.log(err));
-        console.log(results);
+        //console.log(results);
         setItems(results.Items);
         setLoading(false);
       }
@@ -58,7 +58,7 @@ const useFetch = (repository, word) => {
 
       async function fetchData() {
         const results = await documentClient.scan(params).promise().catch(err => console.log(err));
-        console.log(results);
+        //console.log(results);
         setItems(results.Items);
         setLoading(false);
       }
@@ -67,7 +67,7 @@ const useFetch = (repository, word) => {
     } else if (repository === "TYPE") {
       alert("Select repository type to begin search...");
     }
-  }, [word, repository]);
+  }, [word]);
 
   return { datas, isLoading };
 };
