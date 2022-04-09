@@ -20,14 +20,14 @@ const FilterController = (props) => {
   const stargazers_count = props.stargazers_count;
   const number_of_comments = props.number_of_comments;
   const watchers_count = props.watchers_count;
-  const number_of_ratings = props.number_of_comments;
+  const number_of_ratings = props.number_of_ratings;
   const filterState = props.filterState;
-  // const max_forks_count = props.max_forks_count;
-  // const max_open_issues_count = props.max_open_issues_count;
-  // const max_stargazers_count = props.max_stargazers_count;
-  // const max_number_of_comments = props.max_number_of_comments;
-  // const max_number_of_ratings = props.max_number_of_ratings;
-  // const max_watchers_count = props.max_watchers_count;
+  const max_forks_count = props.max_forks_count;
+  const max_open_issues_count = props.max_open_issues_count;
+  const max_stargazers_count = props.max_stargazers_count;
+  const max_number_of_comments = props.max_number_of_comments;
+  const max_number_of_ratings = props.max_number_of_ratings;
+  const max_watchers_count = props.max_watchers_count;
   //console.log(filterState);
   //console.log(repository);
   //console.log(forks_count);
@@ -41,7 +41,6 @@ const FilterController = (props) => {
   max_number_of_ratings={number_of_ratings_setter}
   */
   
-
   const { isLoading, datas } = useFilterFetch(
     repository,
     word,
@@ -56,7 +55,15 @@ const FilterController = (props) => {
     watchers_count,
     number_of_ratings,
     filterState,
+    max_forks_count,
+    max_open_issues_count,
+    max_stargazers_count,
+    max_watchers_count,
+    max_number_of_comments,
+    max_number_of_ratings
+
   );
+
     //console.log("filter state in controller", filterState)
   //the prop "word" comes from search bar and will be
   //the filtering parameter used for project filtering

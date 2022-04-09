@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import pkg from "aws-sdk";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 const { config, DynamoDB } = pkg; //contains DocumentClient to unmarshall into correct JSON format
 
@@ -20,7 +21,13 @@ const useFilterFetch = (
   number_of_comments,
   watchers_count,
   number_of_ratings,
-  filterState
+  filterState,
+  max_forks_count,
+  max_open_issues_count,
+  max_stargazers_count,
+  max_watchers_count,
+  max_number_of_comments,
+  max_number_of_ratings
 ) => {
   const [datas, setItems] = useState([]); //this data is the final product for rendering tables
   const [isLoading, setLoading] = useState(false); //loading tracker
@@ -28,12 +35,11 @@ const useFilterFetch = (
   //will execute function when data is updated
   useEffect(() => {
     config.update({
-      accessKeyId: "",
-      secretAccessKey: "",
-      region: "",
-      endpoint: "",
+      region: "us-east-1",
+      endpoint: "dynamodb.us-east-1.amazonaws.com",
     });
-    //console.log("Filter State in fetcher ",filterState);
+
+
     /*************This method uses standard SQL SELECT statements, it returns a dynamobd ojbect*/
     /*Dynamodb object must be unmarshalled into standard JSON format for this project to work*/
     if (repository === "GitHub" && word !== "") {
@@ -43,28 +49,20 @@ const useFilterFetch = (
           TableName: "GitHubProject",
           ScanIndexForward: true,
           FilterExpression:
-            "contains(#DYNOBASE_Description, :Description) AND #DYNOBASE_forks_count >= :forks_count AND #DYNOBASE_open_issues_count >= :open_issues_count AND #DYNOBASE_stargazers_count >= :stargazers_count AND #DYNOBASE_watchers_count >= :watchers_count AND #DYNOBASE_langugae = :langugae AND #DYNOBASE_license = :license AND #DYNOBASE_created_at >= :created_at AND #DYNOBASE_updated_at <= :updated_at",
-          ExpressionAttributeNames: {
-            "#DYNOBASE_Description": "Description",
-            "#DYNOBASE_forks_count": "forks_count",
-            "#DYNOBASE_open_issues_count": "open_issues_count",
-            "#DYNOBASE_stargazers_count": "stargazers_count",
-            "#DYNOBASE_watchers_count": "watchers_count",
-            "#DYNOBASE_created_at": "created_at",
-            "#DYNOBASE_updated_at": "updated_at",
-            "#DYNOBASE_langugae": "langugae",
-            "#DYNOBASE_license": "license",
-          },
+            "contains(Description, :Description) AND forks_count >= :forks_count AND forks_count <= :maxForks AND open_issues_count >= :open_issues_count AND open_issues_count <= :maxIssues AND stargazers_count >= :stargazers_count AND stargazers_count <= :maxStarGazers AND watchers_count >= :watchers_count AND watchers_count <= :maxWatchers AND created_at >= :created_at AND updated_at <= :updated_at",
+
           ExpressionAttributeValues: {
-            ":Description": `'${word}'`,
-            ":forks_count": `${forks_count}`,
-            ":open_issues_count": `${open_issues_count}`,
-            ":stargazers_count": `${stargazers_count}`,
-            ":watchers_count": `${watchers_count}`,
-            ":created_at": `'${start_date}'`,
-            ":updated_at": `'${end_date}'`,
-            ":langugae": `'${language}'`,
-            ":license": `'${license}'`,
+            ":Description": `${word}`,
+            ":forks_count": forks_count,
+            ":open_issues_count": open_issues_count,
+            ":stargazers_count": stargazers_count,
+            ":watchers_count": watchers_count,
+            ":created_at": `${start_date}`,
+            ":updated_at": `${end_date}`,
+            ":maxForks": max_forks_count,
+            ":maxIssues": max_open_issues_count,
+            ":maxStarGazers": max_stargazers_count,
+            ":maxWatchers": max_watchers_count,
           },
         };
 
@@ -82,28 +80,19 @@ const useFilterFetch = (
         const documentClient = new DynamoDB.DocumentClient();
         const params = {
           TableName: "MATCProject",
-          ScanIndexForward: true,
+          //ProjectionExpression: "title, downloads, summary, author_uri, author_name, id, license, mathworks_url, no_of_comments, no_of_ratings, published, updated",
           FilterExpression:
-            "contains(#DYNOBASE_summary, :summary) AND #DYNOBASE_published >= :published AND #DYNOBASE_updated <= :updated AND #DYNOBASE_downloads >= :downloads OR #DYNOBASE_no_of_comments >= :no_of_comments OR #DYNOBASE_no_of_ratings >= :no_of_ratings",
-          ExpressionAttributeNames: {
-            "#DYNOBASE_summary": "summary",
-            
-          
-            "#DYNOBASE_published": "published",
-            "#DYNOBASE_updated": "updated",
-            "#DYNOBASE_no_of_ratings": "no_of_ratings",
-            "#DYNOBASE_downloads": "downloads",
-            "#DYNOBASE_no_of_comments": "no_of_comments",
-          },
+            "contains(summary, :summary) AND published >= :published AND updated <= :updated AND downloads >= :downloads AND no_of_comments >= :no_of_comments AND no_of_comments <= :maxComments AND no_of_ratings >= :no_of_ratings AND no_of_ratings <= :maxRatings",
+          ScanIndexForward: true,
           ExpressionAttributeValues: {
             ":summary": `${word}`,
-            
-       
             ":published": `${start_date}`,
             ":updated": `${end_date}`,
-            ":no_of_ratings": `${number_of_ratings}`,
+            ":no_of_ratings": number_of_ratings,
             ":downloads": `${forks_count}`,
-            ":no_of_comments": `${number_of_comments}`,
+            ":no_of_comments": number_of_comments,
+            ":maxComments": max_number_of_comments,
+            ":maxRatings": max_number_of_ratings
           },
         };
 
