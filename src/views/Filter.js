@@ -43,8 +43,6 @@ const Filter = (props) => {
     props.number_of_ratings(event);
   }
   function handleMaxForksCount(event) {
-    console.log(event);
-
     props.max_forks_count(event);
   }
   function handleMaxOpenIssuesCount(event) {
