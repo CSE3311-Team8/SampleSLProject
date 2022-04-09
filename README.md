@@ -1,10 +1,11 @@
 
 
-/*
-  
-  Website link (no back-end access yet): https://main.d350yh3v1vkv5l.amplifyapp.com/
 
-*/
+/***************************************Current Progress****************************************/
+
+/***   Website link (no back-end access yet): https://main.d350yh3v1vkv5l.amplifyapp.com/   ***/
+
+
 
 
 /* 4/09/2022 Carlos Uresti
