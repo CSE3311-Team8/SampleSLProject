@@ -3,7 +3,7 @@
 
 /***************************************Current Progress****************************************/
 
-/***   Website link (no back-end access yet): https://main.d350yh3v1vkv5l.amplifyapp.com/   ***/
+/***   Website link (no back-end access yet): https://dev.dq3y5r0503qyh.amplifyapp.com/   ***/
 
 
 
