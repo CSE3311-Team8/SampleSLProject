@@ -21,10 +21,10 @@ import Home from "./controllers/HomeController";
 import Filter from "./views/Filter";
 import FilterController from "./controllers/FilterController";
 import "react-datepicker/dist/react-datepicker.css";
-import awsExports from "./aws-exports";
+//import awsExports from "./aws-exports";
 import AdvancedFilterController from "./controllers/AdvancedFilterController";
 
-Amplify.configure(awsExports);
+//Amplify.configure(awsExports);
 
 function App() {
   const [searchWord, setSearchWord] = useState("");
