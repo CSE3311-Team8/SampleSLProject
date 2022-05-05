@@ -1,10 +1,9 @@
 import React from "react";
 import ProjectList from "../views/ProjectList";
-
-//import useFilterFetch from "./useFilterFetch";
-
-import useFilterFetch from "./useFilterFetch";
-
+import GitHubFilterFetch from "./GitHubFilterFetch";
+import MATCFilterFetch from "./MATCFilterFetch";
+import { Spinner } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 //Hosts the lists of projects matching search word
 const FilterController = (props) => {
   const repository = props.repository;
@@ -28,20 +27,15 @@ const FilterController = (props) => {
   const max_number_of_comments = props.max_number_of_comments;
   const max_number_of_ratings = props.max_number_of_ratings;
   const max_watchers_count = props.max_watchers_count;
-  //console.log(filterState);
-  //console.log(repository);
-  //console.log(forks_count);
+  const setLoader = props.setLoader;
+  const trigger = props.triggerFilter;
+  const triggerState = props.triggerState;
+  var allData = [];
+  const directWord = props.directWord;
+  const downloads = props.downloads;
+  const maxDownloads = props.maxDownloads;
 
-  /*
-  max_forks_count={forks_count_setter}
-  max_open_issues_count={open_issues_count_setter}
-  max_stargazers_count={stargazers_count_setter}
-  max_watchers_count={watchers_count_setter}
-  max_number_of_comments={number_of_comments_setter}
-  max_number_of_ratings={number_of_ratings_setter}
-  */
-  
-  const { isLoading, datas } = useFilterFetch(
+  const { isLoading, data } = GitHubFilterFetch(
     repository,
     word,
     start_date,
@@ -60,20 +54,96 @@ const FilterController = (props) => {
     max_stargazers_count,
     max_watchers_count,
     max_number_of_comments,
-    max_number_of_ratings
-
+    max_number_of_ratings,
+    setLoader,
+    trigger,
+    triggerState
   );
 
-    //console.log("filter state in controller", filterState)
+  const { datas } = MATCFilterFetch(
+    repository,
+    word,
+    start_date,
+    end_date,
+    language,
+    license,
+    downloads,
+    open_issues_count,
+    stargazers_count,
+    number_of_comments,
+    watchers_count,
+    number_of_ratings,
+    filterState,
+    maxDownloads,
+    max_open_issues_count,
+    max_stargazers_count,
+    max_watchers_count,
+    max_number_of_comments,
+    max_number_of_ratings,
+    setLoader,
+    trigger,
+    triggerState
+  );
+
+  //console.log("filter state in controller", filterState)
   //the prop "word" comes from search bar and will be
   //the filtering parameter used for project filtering
-  return (
-    <div className="home">
-      {isLoading && <div>Loading...</div>}
+  if (repository === "All") {
+    allData = [...data, ...datas];
+  }
 
-      <ProjectList items={datas} repository={props.repo} word={props.word} />
-    </div>
-  );
+  //props.setLoader(false);
+  //the prop "word" comes from search bar and will be
+  //the filtering parameter used for project filtering
+  if (repository === "GitHub") {
+    return (
+      <div className="home">
+        {isLoading === true && (
+          <div>
+            <Spinner animation="border" variant="primary" /> Searching...
+          </div>
+        )}
+        <ProjectList
+          items={data}
+          repository={repository}
+          word={word}
+          directWord={directWord}
+        />
+      </div>
+    );
+  } else if (repository === "MATC") {
+    return (
+      <div className="home">
+        {isLoading === true && (
+          <div>
+            <Spinner animation="border" variant="primary" /> Searching...
+          </div>
+        )}
+        <ProjectList
+          items={datas}
+          repository={repository}
+          word={word}
+          directWord={directWord}
+        />
+      </div>
+    );
+  } else if (repository === "All") {
+    return (
+      <div className="home">
+        {isLoading === true && (
+          <div>
+            <Spinner animation="border" variant="primary" /> Searching...
+          </div>
+        )}
+        <ProjectList
+          items={allData}
+          repository={repository}
+          word={word}
+          directWord={directWord}
+        />
+      </div>
+    );
+  }
 };
 
 export default FilterController;
