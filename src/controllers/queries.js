@@ -1,7 +1,6 @@
  var word;
  var nextToken;
  
- 
  //query and fields requested
  export const listMATCProjects = /* GraphQL */ `
  query listMATCProjects{

@@ -4,6 +4,7 @@
 
 
 # dependencies
+/data
 /amplify
 /node_modules
 /.pnp
