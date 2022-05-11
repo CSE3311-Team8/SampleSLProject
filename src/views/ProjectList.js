@@ -2,25 +2,32 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import { useState } from "react";
 import { Button } from "@mui/material";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 //list of projects is generated using the prop received
 const ProjectList = (props) => {
   const [visible, setVisible] = useState(10);
-
   const data = props.items;
   const database = props.repository;
+  const directWord = props.directWord;
+  const  word = props.word;
+  var tag;
+  var dummy =[]
+
   //console.log(database);
   let Visible = visible;
 
   const loadMOre = () => {
-    setVisible(Visible + 25);
+    setVisible(Visible + 10);
   };
 
-//console.log(data.length);
+
 
   return (
     <div className="search-items">
       <div className="list">
+        {/* {data.length === 0 && directWord !== "" &&(
+          <div className="alert-spinner">No results to display...</div>
+        )} */}
         {data.slice(0, visible).map((item) => {
           return (
             /* all columns set to 20% total width */
@@ -33,7 +40,7 @@ const ProjectList = (props) => {
                     <th className="header">Owner Page</th>
                     <th className="header">Created On</th>
                     <th className="header">Updated On</th>
-                    <th className="header">Ratings</th>
+                    {/* <th className="header">Ratings</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -64,7 +71,7 @@ const ProjectList = (props) => {
                         item.updated || item.updated_at
                       ).toLocaleDateString()}
                     </td>
-                    <td className="ratings">{item.no_of_ratings || item.no_of_ratings}</td>
+                    {/* <td className="ratings">{item.no_of_ratings || item.no_of_ratings}</td> */}
                   </tr>
                   <tr>
                     <td className="description" align="center" colSpan={"12"}>
@@ -76,33 +83,48 @@ const ProjectList = (props) => {
                     </td>
                   </tr>
                   <tr className="attributes">
-                    <td>
-                      <h1 className="headers">
-                        watchers : {item.watchers_count || "0"}
-                      </h1>
+                    <td className="watchers">
+                      {database === "GitHub" && <h1 className="headers">
+                        watchers : {item.watchers_count}
+                      </h1>}
+                      {database === "MATC" && <h1 className="headers">
+                        downloads : {item.downloads}
+                      </h1>}
+                      {database === "All" && <h1 className="headers">
+                        {tag = (item.homepage_url === null || item.homepage_url === "") ? "watchers" : "downloads"} : {item.downloads || item.watchers_count}
+                      </h1>}                      
+              
                     </td>
-                    <td>
+                    <td className="language">
                       <h1 className="headers">
                         language : {item.language || "MATLAB"}
                       </h1>
                     </td>
-                    <td>
-                      <h1 className="headers">
-                        forks : {item.forks_count || item.downloads}
-                      </h1>
+                    <td className="forks">
+                      {database === "GitHub" && <h1 className="headers">
+                        forks : {item.forks_count}
+                      </h1>}
+                      {database === "MATC" && <h1 className="headers">
+                        comments : {item.no_of_comments}
+                      </h1>}
+                      {database === "All" && <h1 className="headers">
+                        {tag = (item.homepage_url === null || item.homepage_url === "") ? "forks" : "comments"} : {item.downloads || item.watchers_count}
+                      </h1>} 
+                      
+                    </td>
+                    <td className="license">
+                      <h1 className="headers">license : {(item.license.length < 50 && item.license) || "BDS"}</h1>
                     </td>
                     <td>
-                      <h1 className="headers">license : {"GNU"}</h1>
-                    </td>
-                    <td>
-                      <h1 className="headers">
+                    {database === "GitHub" && <h1 className="headers">
                         stargazers : {item.stargazers_count || "0"}
-                      </h1>
-                    </td>
-                    <td>
-                      <h1 className="headers">
-                        comments : {item.no_of_comments || "0"}
-                      </h1>
+                      </h1>}
+                      {database === "MATC" && <h1 className="headers">
+                        ratings : {item.no_of_ratings || "0"}
+                      </h1>}
+                      {database === "All" && <h1 className="headers">
+                        {tag = (item.homepage_url === null || item.homepage_url === "") ? "stargazers" : "ratings"} : {item.stargazers_count || item.no_of_ratings}
+                      </h1>} 
                     </td>
                   </tr>
                 </tbody>
@@ -111,7 +133,7 @@ const ProjectList = (props) => {
           );
         })}
         <div className="page-count">
-          {visible < data.length && (
+          {/* {visible < data.length && (
             <Button
               className="loader"
               variant="contained"
@@ -120,7 +142,7 @@ const ProjectList = (props) => {
             >
               Next 10
             </Button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

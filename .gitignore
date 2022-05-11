@@ -4,6 +4,8 @@
 
 
 # dependencies
+/data
+/amplify
 /node_modules
 /.pnp
 .pnp.js
@@ -36,6 +38,8 @@ build/
 dist/
 node_modules/
 aws-exports.js
+graphql
+.graphqlconfig.yml
 awsconfiguration.json
 amplifyconfiguration.json
 amplifyconfiguration.dart

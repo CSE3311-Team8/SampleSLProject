@@ -1,0 +1,117 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type MATCProject @model{
+	id: Int! @primaryKey
+	author_name: String
+	author_uri: String
+	average_rating: Float
+  category: String
+	content: String
+	download_link: String
+	downloads: String
+	license: String
+	mathworks_url: String
+	model_files: String
+	no_of_comments: Int
+	no_of_ratings: Int
+	num_model_files: Int
+	published: String
+	summary: String
+	title: String
+	updated: String
+}
+
+type GitHubProject @model{
+  id: Int! @primaryKey
+  Description: String
+  created_at: String
+  forks_count: Int
+  is_private: Int
+  homepage_url: String
+  language: String
+  license: String
+  model_files: String
+  num_model_file: Int
+  open_issues_count: Int
+  owner_name: String
+  project_url: String
+  repo_name: String
+  stargazers_count: Int
+  updated_at: String
+  watchers_count: Int
+}
+
+type GitHubModels @model{
+  ID: Int
+  FILE_ID: Int! @primaryKey
+  Model_Name: String
+  file_path: String
+  is_test: Int
+  is_Lib: Int
+  SCHK_Block_count: Int
+  SLDiag_Block_count: Int
+  C_corpus_blk_conn: Int
+  C_corpus_hidden_conn: Int
+  C_corpus_conn: Int
+  C_corpus_hierar_depth: Int
+  SubSystem_count_Top: Int
+  Agg_SubSystem_count: Int
+  Hierarchy_depth: Int
+  LibraryLinked_Count: Int
+  compiles: Int
+  CComplexity: Int
+  Sim_time: Int
+  Alge_loop_Cnt: Int
+  target_hw: String
+  solver_type: String
+  sim_mode: String
+  total_ConnH_cnt: Int
+  total_desc_cnt: Int
+  ncs_cnt: Int
+  scc_cnt: Int
+  unique_sfun_count: Int
+  sfun_nam_count: String
+  mdlref_nam_count: String
+  unique_mdl_ref_count: Int
+}
+
+type MATCModels @model{
+  ID: Int
+  FILE_ID: Int! @primaryKey
+  Model_Name: String
+  file_path: String
+  is_test: Int
+  is_Lib: Int
+  SCHK_Block_count: Int
+  SLDiag_Block_count: Int
+  C_corpus_blk_conn: Int
+  C_corpus_hidden_conn: Int
+  C_corpus_conn: Int
+  C_corpus_hierar_depth: Int
+  SubSystem_count_Top: Int
+  Agg_SubSystem_count: Int
+  Hierarchy_depth: Int
+  LibraryLinked_Count: Int
+  compiles: Int
+  CComplexity: Int
+  Sim_time: Int
+  Alge_loop_Cnt: Int
+  target_hw: String
+  solver_type: String
+  sim_mode: String
+  total_ConnH_cnt: Int
+  total_desc_cnt: Int
+  ncs_cnt: Int
+  scc_cnt: Int
+  unique_sfun_count: Int
+  sfun_nam_count: String
+  mdlref_nam_count: String
+  unique_mdl_ref_count: Int
+}
+
+type Query {
+    batchGet(ids: [ID]): [MATCProject]
+}
+

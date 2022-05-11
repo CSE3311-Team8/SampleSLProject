@@ -15,73 +15,97 @@ NumericInput.style.input.color = "blue";
 //props here are the word in the search bar and the repo selected
 
 const AdvancedFilter = (props) => {
-  const [languageTitle, setLanguageTitle] = useState("Select Language");
-  const [licenseTitle, setLicenseTitle] = useState("Select License");
-  const [dateTracker, setDateTracker] = useState();
-  const [endDateTracker, setEndDateTracker] = useState();
+  const [includeExcludeTitle, setIncludeExcludeTitle] = useState("Select Include/Exclude");
+  const [targetHardwareTitle, setTargetHardwareTitle] = useState("Select Target Hardware");
+  const [solverTypeTitle, setSolverTypeTitle] = useState("Select Solver Type");
+  const [simulationModeTitle, setSimulationModeTitle] = useState("Select Simulation Mode");
+
   //console.log(props.advancedFilterState);
   //these functions handle the what happens when new value is selected from menu
-  function handleForksCount(event) {
-    console.log(event);
 
-    props.forks_count(event);
-  }
-  function handleOpenIssuesCount(event) {
-    props.open_issues_count(event);
-  }
-  function handleStargazersCount(event) {
-    props.stargazers_count(event);
-  }
-  function handleWatchersCount(event) {
-    props.watchers_count(event);
-  }
 
-  function handleNumOfComments(event) {
-    props.number_of_comments(event);
-  }
-  function handleNumOfRatings(event) {
-    props.number_of_ratings(event);
-  }
-  function handleMaxForksCount(event) {
-    console.log(event);
+  function handleBlockCount(event) {
+   
 
-    props.max_forks_count(event);
+    props.blockCount(event);
   }
-  function handleMaxOpenIssuesCount(event) {
-    props.max_open_issues_count(event);
+  function handleMaxBlockCount(event) {
+    props.maxBlockCount(event);
   }
-  function handleMaxStargazersCount(event) {
-    props.max_stargazers_count(event);
+  function handleAlgebraicCount(event) {
+    props.algebraicCount(event);
   }
-  function handleMaxWatchersCount(event) {
-    props.max_watchers_count(event);
+  function handleMaxAlgebraicCount(event) {
+    props.maxAlgebraicCount(event);
   }
 
-  function handleMaxNumOfComments(event) {
-    props.max_number_of_comments(event);
+  function handleSubsysCount(event) {
+    props.subsysCount(event);
   }
-  function handleMaxNumOfRatings(event) {
-    props.max_number_of_ratings(event);
+  function handleMaxSubsysCount(event) {
+    props.maxSubsysCount(event);
+  }
+  function handleSFunctionCount(event) {
+    
+
+    props.uniqueSFunctionCount(event);
+  }
+  function handleMaxSFunctionCount(event) {
+    props.maxUniqueSFunctionCount(event);
+  }
+  function handleHierarchyDepth(event) {
+    props.hierarchyDepth(event);
+  }
+  function handleMaxHierarchyDepth(event) {
+    props.maxHierarchyDepth(event);
   }
 
-  const handleLanguageSelect = (event) => {
-    setLanguageTitle(event);
-    props.language(event);
-    props.language_title(event);
+  function handleUniqueModelReference(event) {
+    props.uniqueModelReference(event);
+  }
+  function handleMaxUniqueModelReference(event) {
+    props.maxUniqueModelReference(event);
+  }
+
+  function handleLinkedCount(event) {
+    props.libraryLinkedCount(event);
+  }
+
+  function handleMaxLinkedCount(event) {
+    props.maxLibraryLinkedCount(event);
+  }
+
+  function handleCyclomaticComplexity(event) {
+    props.cyclomaticComplexity(event);
+  }
+
+  function handleMaxCyclomaticComplexity(event) {
+    props.maxCyclomaticComplexity(event);
+  }
+
+  const handleIncludeExclude = (event) => {
+    setIncludeExcludeTitle(event);
+    props.includeExclude(event);
   };
-  const handleStartDate = (event) => {
-    setDateTracker(event);
-    props.start_date(event);
+
+  const handleTargetHardware = (event) => {
+    setTargetHardwareTitle(event);
+    props.targetHardware(event);
   };
-  const handleEndDate = (event) => {
-    setEndDateTracker(event);
-    props.end_date(event);
+
+  const handleSolverType = (event) => {
+    setSolverTypeTitle(event);
+    props.solverType(event);
   };
-  const handleLicenseSelect = (event) => {
-    setLicenseTitle(event);
-    props.license(event);
-    props.license_title(event);
+
+  const handleSimulationMode = (event) => {
+    setSimulationModeTitle(event);
+    props.simulationMode(event);
   };
+
+  function advancedfilteredSearchTrigger(event) {
+    props.advancedFilteredSearchTrigger(event);
+  }
 
   return (
     /*********************filter modal**********************/
@@ -106,53 +130,86 @@ const AdvancedFilter = (props) => {
               </div>
               <div className="body">
                 <Container>
+                  <Row>
+                    <Col md="4">
+                      <h4>Block Count</h4>
+                    </Col>
+                    <Col md="4">
+                      <h4>Algebraic Count </h4>
+                    </Col>
+                    <Col md="4">
+                      <h4>Inclue/Exclude</h4>
+                    </Col>
+                  </Row>
                   <Row className="date">
-                    <Col md="4" className="col-example">
-                      <h4>Start Date</h4>
-                      <DatePicker
-                        selected={dateTracker}
-                        //onChange={handleStartDate}
-                        popperPlacement="top-end"
-                        placeholderText="select start date..."
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleBlockCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleMaxBlockCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleAlgebraicCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleMaxAlgebraicCount}
+                        variant={"primary"}
+                        size="sm"
                       />
                     </Col>
                     <Col md="4" className="col-example">
-                      <h4>End Date</h4>
-                      <DatePicker
-                        selected={endDateTracker}
-                        popperPlacement="top-end"
-                        placeholderText="select end date..."
-                        //onChange={handleEndDate}
-                      />
-                    </Col>
-                    <Col md="4" className="col-example">
-                      <h4>Language</h4>
                       <DropdownButton
                         id="dropdown-item-button"
-                        title={languageTitle}
-                        //onSelect={handleLanguageSelect}
+                        title={includeExcludeTitle}
+                        onSelect={handleIncludeExclude}
                       >
-                        <Dropdown.Item eventKey="C++" as="button">
-                          C++
+                        <Dropdown.Item eventKey="Blank" as="button">
+                          Blank
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="C" as="button">
-                          C
+                        <Dropdown.Item eventKey="Blank" as="button">
+                        Blank
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="MATLAB" as="button">
-                          MATLAB
+                        <Dropdown.Item eventKey="Blank" as="button">
+                        Blank
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
                   </Row>
                   <Row>
                     <Col md="4">
-                      <h4>Forks Count</h4>
+                      <h4>Subsys Count</h4>
                     </Col>
                     <Col md="4">
-                      <h4>Open Issues Count</h4>
+                      <h4>Unique S-function Count</h4>
                     </Col>
                     <Col md="4">
-                      <h4>License</h4>
+                      <h4>Target Hardware</h4>
                     </Col>
                   </Row>
                   <Row>
@@ -161,7 +218,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleForksCount}
+                        onChange={handleSubsysCount}
                         variant={"primary"}
                         size="sm"
                         value={"min"}
@@ -173,7 +230,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxForksCount}
+                        onChange={handleMaxSubsysCount}
                         variant={"primary"}
                         size="sm"
                       />
@@ -183,7 +240,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleOpenIssuesCount}
+                        onChange={handleSFunctionCount}
                         variant={"primary"}
                         size="sm"
                       />
@@ -193,7 +250,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxOpenIssuesCount}
+                        onChange={handleMaxSFunctionCount}
                         variant={"primary"}
                         size="sm"
                       />
@@ -201,29 +258,76 @@ const AdvancedFilter = (props) => {
                     <Col md="4" className="col-example">
                       <DropdownButton
                         id="dropdown-item-button"
-                        title={licenseTitle}
-                        //onSelect={handleLicenseSelect}
+                        title={targetHardwareTitle}
+                        onSelect={handleTargetHardware}
                       >
-                        <Dropdown.Item eventKey="MIT" as="button">
-                          MIT
+                        <Dropdown.Item eventKey="32-bit Generic" as="button">
+                        16-bit Generic
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="GNU" as="button">
-                          GNU
+                        <Dropdown.Item eventKey="16-bit Generic" as="button">
+                        32-bit Generic
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="BDS" as="button">
-                          BSD
+                        <Dropdown.Item eventKey="ARM Compatible->ARM Cortex" as="button">
+                        ARM Compatible-ARM Cortex
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="ARM Compatible->Cortex - M4" as="button">
+                        ARM Compatible-Cortex - M4
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Atmel->AVR" as="button">
+                        Atmel-AVR
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Custom Processor->MATLAB Host Computer" as="button">
+                        Custom Processor-MATLAB Host Computer
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Freescale->32-bit PowerPC" as="button">
+                        Freescale-32-bit PowerPC
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Generic->16-bit Embedded Processor" as="button">
+                        Generic-16-bit Embedded Processor
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Freescale->32-bit PowerPC" as="button">
+                        Freescale-32-bit PowerPC
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Generic->32-bit x86 compatible" as="button">
+                        Generic-32-bit x86 compatible
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Intel->x86-64 (Windows64)" as="button">
+                        Intel-x86-64 (Windows64)
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Intel->x86-64 (Linux 64)" as="button">
+                        Intel-x86-64 (Linux 64)
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="MATLAB Host" as="button">
+                        MATLAB Host
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="N/A" as="button">
+                        N/A
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="STMicroelectronics->STM32 32-bit Cortex-M" as="button">
+                        STMicroelectronics-STM32 32-bit Cortex-M
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Texas Instruments->C6000" as="button">
+                        Texas Instruments-C6000
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Unspecified" as="button">
+                        Unspecified
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Specified" as="button">
+                        Specified
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
                   </Row>
                   <Row>
                     <Col md="4">
-                      <h4>Stargazers Count</h4>
+                      <h4>Hierarchy Depth</h4>
                     </Col>
                     <Col md="4">
-                      <h4>Comments</h4>
+                      <h4>Unique Model Referece</h4>
                     </Col>
-                    <Col md="4"></Col>
+                    <Col md="4">
+                      <h4>Solver Type</h4>
+                    </Col>
                   </Row>
                   <Row>
                     <Col md="2" className="col-example">
@@ -231,7 +335,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleStargazersCount}
+                        onChange={handleHierarchyDepth}
                         variant={"primary"}
                         size="sm"
                       />
@@ -241,7 +345,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxStargazersCount}
+                        onChange={handleMaxHierarchyDepth}
                         variant={"primary"}
                         size="sm"
                       />
@@ -251,7 +355,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleNumOfComments}
+                        onChange={handleUniqueModelReference}
                         variant={"primary"}
                         size="sm"
                       />
@@ -261,20 +365,39 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxNumOfComments}
+                        onChange={handleMaxUniqueModelReference}
                         variant={"primary"}
                         size="sm"
                       />
+                    </Col>
+                    <Col md="4" className="col-example">
+                      <DropdownButton
+                        id="dropdown-item-button"
+                        title={solverTypeTitle}
+                        onSelect={handleSolverType}
+                      >
+                        <Dropdown.Item eventKey="Fixed-step" as="button">
+                        Fixed-step
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Variable-step" as="button">
+                        Variable-step
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="N/A" as="button">
+                        N/A
+                        </Dropdown.Item>
+                      </DropdownButton>
                     </Col>
                   </Row>
                   <Row>
                     <Col md="4">
-                      <h4>Watchers Count</h4>
+                      <h4>Library Linked Count</h4>
                     </Col>
                     <Col md="4">
-                      <h4>Number of Ratings</h4>
+                      <h4>Cyclomatic Complexity</h4>
                     </Col>
-                    <Col md="4"></Col>
+                    <Col md="4">
+                      <h4>Simulation Mode</h4>
+                    </Col>
                   </Row>
                   <Row>
                     <Col md="2" className="col-example">
@@ -282,7 +405,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleWatchersCount}
+                        onChange={handleLinkedCount}
                         variant={"primary"}
                         size="sm"
                       />
@@ -292,7 +415,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxWatchersCount}
+                        onChange={handleMaxLinkedCount}
                         variant={"primary"}
                         size="sm"
                       />
@@ -302,7 +425,7 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleNumOfRatings}
+                        onChange={handleCyclomaticComplexity}
                         variant={"primary"}
                         size="sm"
                       />
@@ -312,20 +435,49 @@ const AdvancedFilter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        //onChange={handleMaxNumOfRatings}
+                        onChange={handleMaxCyclomaticComplexity}
                         variant={"primary"}
                         size="sm"
                       />
                     </Col>
-                    <Col md="4" className="filtered-search">
-                      {/* <Button
-      className="search-button"
-      variant="contained"
-      size="medium"
-      onClick={sendIt}
-    >
-      Filtered Search
-    </Button> */}
+                    <Col md="4" className="col-example">
+                      <DropdownButton
+                        id="dropdown-item-button"
+                        title={simulationModeTitle}
+                        onSelect={handleSimulationMode}
+                      >
+                        <Dropdown.Item eventKey="N/A" as="button">
+                         N/A
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="accelerator" as="button">
+                        accelerator
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="external" as="button">
+                        external
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="normal" as="button">
+                        normal
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="processor-in-the-loop (pil)" as="button">
+                        processor-in-the-loop (pil)
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="rapid-accelerator" as="button">
+                        rapid-accelerator
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </Col>
+                  </Row>
+                  <Row>
+                  <Col md="12" className="advanced-search">
+                    <Button
+                      className="search-button"
+                      variant="contained"
+                      size="medium"
+                      onClick={advancedfilteredSearchTrigger}
+                    
+                    >
+                      Advanced Search
+                    </Button>
                     </Col>
                   </Row>
                 </Container>

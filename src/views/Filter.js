@@ -19,6 +19,10 @@ const Filter = (props) => {
   const [licenseTitle, setLicenseTitle] = useState("Select License");
   const [dateTracker, setDateTracker] = useState();
   const [endDateTracker, setEndDateTracker] = useState();
+  const [greyOut, setGreyOut] = useState()
+  const repository = props.repository;
+  const defaultMin = 0;
+  //const filteredSearchTrigger = props.filteredSearchTrigger;
 
   //these functions handle the what happens when new value is selected from menu
   function handleForksCount(event) {
@@ -80,242 +84,380 @@ const Filter = (props) => {
     props.license(event);
     props.license_title(event);
   };
+  function filteredSearchTrigger(event) {
+    props.filteredSearchTrigger(event);
+  }
+  const handleNumDownloads = (e)=>
+  {
+    props.downloads(e);
+  }
+  const handleMaxNumOfDownloads = (e)=>
+  {
+    props.downloads(e);
+  }
+  
 
   return (
     /*********************filter modal**********************/
     <div className="Home">
       {props.filterState === true && (
-        <><h1>Filter</h1><div className="modalBackground">
-          <div className="modalContainer">
-            <div className="title">
-              <div className="closeButton">
-                <Button
-                  className="searchButton"
-                  variant="contained"
-                  size="small"
-                  onClick={() => props.closeFilter(true)}
-                >
-                  X
-                </Button>
+        <>
+          <h1>Filter</h1>
+          <div className="modalBackground">
+            <div className="modalContainer">
+              <div className="title">
+                <div className="closeButton">
+                  <Button
+                    className="searchButton"
+                    variant="contained"
+                    size="small"
+                    onClick={() => props.closeFilter(true)}
+                  >
+                    X
+                  </Button>
+                </div>
+                <div className="titleValue"></div>
               </div>
-              <div className="titleValue">
+              <div className="body">
+                <Container>
+                  <Row className="date">
+                    <Col md="4" className="col-example">
+                      <h4>From</h4>
+                      <DatePicker
+                        selected={dateTracker}
+                        onChange={handleStartDate}
+                        popperPlacement="left-end"
+                        placeholderText="select start date..."
+                      />
+                    </Col>
+                    <Col md="4" className="col-example">
+                      <h4>To</h4>
+                      <DatePicker
+                        selected={endDateTracker}
+                        popperPlacement="right-end"
+                        placeholderText="select end date..."
+                        onChange={handleEndDate}
+                      />
+                    </Col>
 
+                    <Col md="4" className="col-example">
+                      <h4>Language</h4>
+                      <DropdownButton
+                        id="dropdown-item-button"
+                        disabled ={(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        title={languageTitle}
+                        onSelect={handleLanguageSelect}
+                      >
+                        <Dropdown.Item eventKey="C++" as="button">
+                          C++
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="C" as="button">
+                          C
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Matlab" as="button">
+                          Matlab
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="MATLAB" as="button">
+                          MATLAB
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="HTML" as="button">
+                          HTML
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Verilog" as="button">
+                          Verilog
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Java" as="button">
+                          Java
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Python" as="button">
+                          Python
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Jupyter Notebook" as="button">
+                          Jupyter Notebook
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="Mercury" as="button">
+                          Mercury
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="C#" as="button">
+                          C#
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="XSLT" as="button">
+                          XSLT
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="4">
+                      <h4>Forks Count</h4>
+                    </Col>
+
+                    <Col md="4">
+                      <h4>Open Issues Count</h4>
+                    </Col>
+
+                    <Col md="4">
+                      <h4>License</h4>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        onChange={handleForksCount}
+                        variant={"primary"}
+                        size="sm"
+                        value={"min"}
+                      />
+                    </Col>
+
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        min={0}
+                        onChange={handleMaxForksCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        onChange={handleOpenIssuesCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        onChange={handleMaxOpenIssuesCount}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+
+                    <Col md="4" className="col-example">
+                      <DropdownButton
+                        id="dropdown-item-button"
+                        title={licenseTitle}
+                        disabled ={(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        onSelect={handleLicenseSelect}
+                      >
+                        <Dropdown.Item
+                          eventKey="Apache License 2.0"
+                          as="button"
+                        >
+                          Apache License 2.0
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="BSD 2-Clause" as="button">
+                          BSD 2-Clause
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="BSD 3-Clause" as="button">
+                          BSD 3-Clause
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          eventKey="GNU General Public License v3.0"
+                          as="button"
+                        >
+                          GNU v3.0
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          eventKey="Eclipse Public License 1.0"
+                          as="button"
+                        >
+                          Eclipse Public License 1.0
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          eventKey="GNU Affero General Public License v3.0"
+                          as="button"
+                        >
+                          GNU Affero v3.0
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="MIT License" as="button">
+                          MIT
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          eventKey="Mozilla Public License 2.0"
+                          as="button"
+                        >
+                          Mozilla Public License 2.0
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="other" as="button">
+                          other
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="" as="button">
+                          no selection
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="4">
+                      <h4>Stargazers Count</h4>
+                    </Col>
+                    <Col md="4">
+                      <h4>Watchers Count</h4>
+                    </Col>
+                    {/* <Col md="4">
+                      <h4>Downloads</h4>
+                    </Col> */}
+
+                   
+                  </Row>
+                  <Row>
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleStargazersCount}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleMaxStargazersCount}
+                        disabled = {(props.repository === "GitHub"|| props.repository === "All") ? false : true}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleWatchersCount}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleMaxWatchersCount}
+                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    {/* <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        onChange={handleNumDownloads}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        onChange={handleMaxNumOfDownloads}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col> */}
+
+                  </Row>
+                  <Row>
+                    <Col md="4">
+                      <h4>Number of Ratings</h4>
+                    </Col>
+
+                    <Col md="4">
+                      <h4>Comments</h4>
+                    </Col>
+                  </Row>
+                  <Row>
+                  <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleNumOfRatings}
+                        variant={"primary"}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        onChange={handleMaxNumOfRatings}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>min:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        onChange={handleNumOfComments}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+                    <Col md="2" className="col-example">
+                      <h5>max:</h5>
+                      <InputSpinner
+                        type={"natural"}
+                        min={0}
+                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        onChange={handleMaxNumOfComments}
+                        variant={"primary"}
+                        size="sm"
+                      />
+                    </Col>
+
+                     <Col md="4">
+                      <Button
+                        className="search-button"
+                        variant="contained"
+                        size="medium"
+                        onClick={filteredSearchTrigger}
+                      >
+                        Filtered Search
+                      </Button>
+                    </Col>  
+                  
+                  </Row>
+                </Container>
               </div>
-            </div>
-            <div className="body">
-              <Container>
-                <Row className="date">
-                  <Col md="4" className="col-example">
-                    <h4>Start Date</h4>
-                    <DatePicker
-                      selected={dateTracker}
-                      onChange={handleStartDate}
-                      popperPlacement="left-end"
-                      placeholderText="select start date..." />
-                  </Col>
-                  <Col md="4" className="col-example">
-                    <h4>End Date</h4>
-                    <DatePicker
-                      selected={endDateTracker}
-                      popperPlacement="right-end"
-                      placeholderText="select end date..."
-                      onChange={handleEndDate} />
-                  </Col>
-                  <Col md="4" className="col-example">
-                    <h4>Language</h4>
-                    <DropdownButton
-                      id="dropdown-item-button"
-                      title={languageTitle}
-                      onSelect={handleLanguageSelect}
-                    >
-                      <Dropdown.Item eventKey="C++" as="button">
-                        C++
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="C" as="button">
-                        C
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="MATLAB" as="button">
-                        MATLAB
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md="4">
-                    <h4>Forks Count</h4>
-                  </Col>
-                  <Col md="4">
-                    <h4>Open Issues Count</h4>
-                  </Col>
-                  <Col md="4">
-                    <h4>License</h4>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleForksCount}
-                      variant={"primary"}
-                      size="sm"
-                      value={"min"} />
-                  </Col>
-
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxForksCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleOpenIssuesCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxOpenIssuesCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="4" className="col-example">
-                    <DropdownButton
-                      id="dropdown-item-button"
-                      title={licenseTitle}
-                      onSelect={handleLicenseSelect}
-                    >
-                      <Dropdown.Item eventKey="MIT" as="button">
-                        MIT
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="GNU" as="button">
-                        GNU
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="BDS" as="button">
-                        BSD
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md="4">
-                    <h4>Stargazers Count</h4>
-                  </Col>
-                  <Col md="4">
-                    <h4>Comments</h4>
-                  </Col>
-                  <Col md="4"></Col>
-                </Row>
-                <Row>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleStargazersCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxStargazersCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleNumOfComments}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxNumOfComments}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md="4">
-                    <h4>Watchers Count</h4>
-                  </Col>
-                  <Col md="4">
-                    <h4>Number of Ratings</h4>
-                  </Col>
-                  <Col md="4"></Col>
-                </Row>
-                <Row>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleWatchersCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxWatchersCount}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>min:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleNumOfRatings}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="2" className="col-example">
-                    <h5>max:</h5>
-                    <InputSpinner
-                      type={"natural"}
-                      min={0}
-                      onChange={handleMaxNumOfRatings}
-                      variant={"primary"}
-                      size="sm" />
-                  </Col>
-                  <Col md="4" className="filtered-search">
-                    {/* <Button
-      className="search-button"
-      variant="contained"
-      size="medium"
-      onClick={sendIt}
-    >
-      Filtered Search
-    </Button> */}
-                  </Col>
-                </Row>
-              </Container>
             </div>
           </div>
-        </div></>
+        </>
       )}
     </div>
   );
