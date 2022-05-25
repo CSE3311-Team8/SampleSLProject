@@ -1,5 +1,4 @@
-import Amplify, { API, graphqlOperation } from "aws-amplify";
-import React from "react";
+import { API, graphqlOperation } from "aws-amplify";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -9,9 +8,6 @@ import { useEffect } from "react";
 //const { unmarshall } = require("@aws-sdk/util-dynamodb");
 
 const MATCFetch = (repository, word, setLoader) => {
-  const pageLimit = 40;
-  const pageLimitAll = 40;
-  const [page, setPage] = useState(1);
   const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [nextToken, setNextToken] = useState("");
@@ -20,8 +16,6 @@ const MATCFetch = (repository, word, setLoader) => {
   const [filterTracker, setFilterTracker] = useState("");
   const [firstFetch, setFirstFetch] = useState(false);
   var [holder1, setHolder1] = useState([]); //collects projecst as they are found
-  var [holder2, setHolder2] = useState([]);
-  var [allHolder, setAllHolder] = useState([]);
 
   //query and fields requested
   const listMATCProjects = /* GraphQL */ `
@@ -81,7 +75,7 @@ query listMATCProjects{
     //this will set the next token to empty when word is reset
     //this ensures tables are scanned from beginning and not last token scanned
 
-    if ( word !== "" && (repository === "All" || repository === "MATC")) {
+    if (word !== "" && (repository === "All" || repository === "MATC")) {
       //this tracks the incoming word for comparison with next request
       //if the incoming query is different than this state,
       //next token will be set to "" and search will begin from start of table

@@ -1,11 +1,11 @@
 import React from "react";
-import ProjectList from "../views/ProjectList";
-import GitHubFilterFetch from "./GitHubFilterFetch";
-import MATCFilterFetch from "./MATCFilterFetch";
+import GitHubFilterFetch from "../useFetchHooks/GitHubFilterFetch";
+import MATCFilterFetch from "../useFetchHooks/MATCFilterFetch";
 import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Projects from "../components/Projects";
 //Hosts the lists of projects matching search word
-const FilterController = (props) => {
+const FilterList = (props) => {
   const repository = props.repository;
   const word = props.word;
   const start_date = props.start_date;
@@ -103,10 +103,9 @@ const FilterController = (props) => {
             <Spinner animation="border" variant="primary" /> Searching...
           </div>
         )}
-        <ProjectList
+        <Projects
           items={data}
           repository={repository}
-          word={word}
           directWord={directWord}
         />
       </div>
@@ -119,7 +118,7 @@ const FilterController = (props) => {
             <Spinner animation="border" variant="primary" /> Searching...
           </div>
         )}
-        <ProjectList
+        <Projects
           items={datas}
           repository={repository}
           word={word}
@@ -135,7 +134,7 @@ const FilterController = (props) => {
             <Spinner animation="border" variant="primary" /> Searching...
           </div>
         )}
-        <ProjectList
+        <Projects
           items={allData}
           repository={repository}
           word={word}
@@ -146,4 +145,4 @@ const FilterController = (props) => {
   }
 };
 
-export default FilterController;
+export default FilterList;

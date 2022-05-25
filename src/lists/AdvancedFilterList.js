@@ -1,13 +1,12 @@
 import React from "react";
-import ProjectList from "../views/ProjectList";
-import GitHubFilterFetch from "./GitHubFilterFetch";
-import AdvancedMATCFilterFetch from "./AdvancedMATCFilterFetch";
-import { Spinner } from "react-bootstrap";
+import GitHubFilterFetch from "../useFetchHooks/GitHubFilterFetch";
+import AdvancedMATCFilterFetch from "../useFetchHooks/AdvancedMATCFilterFetch";
 import "bootstrap/dist/css/bootstrap.min.css";
-import BatchMATCFetch from "./BatchFetchMATC";
+import BatchMATCFetch from "../useFetchHooks/BatchMATCFetch";
+import Projects from "../components/Projects";
 
 //Hosts the lists of projects matching search word
-const AdvancedFilterController = (props) => {
+const AdvancedFilterList = (props) => {
   const repository = props.repository;
   const word = props.word;
   const blockCount = props.blockCount;
@@ -35,7 +34,6 @@ const AdvancedFilterController = (props) => {
   const setLoader = props.setLoader;
   const trigger = props.triggerFilter;
   const triggerState = props.triggerState;
-  var holder1 = [];
 
   /*******************************pass trigger filters from app.js***************************************/
   // const { isLoading, data } = GitHubFilterFetch(
@@ -99,21 +97,18 @@ const AdvancedFilterController = (props) => {
 
   var { project } = BatchMATCFetch(ids, advancedFilterState);
 
- 
-  
   //console.log("filter state in controller", filterState)
   //the prop "word" comes from search bar and will be
   //the filtering parameter used for project filtering
   // if (repository === "All") {
   //   allData = [...data, ...datas];
   // }
-  if(project === undefined){
-    project = []
+  if (project === undefined) {
+    project = [];
   }
-  //props.setLoader(false);
+
   //the prop "word" comes from search bar and will be
   //the filtering parameter used for project filtering
-
   return (
     <div className="home">
       {/* {isLoading === true && (
@@ -121,14 +116,13 @@ const AdvancedFilterController = (props) => {
             <Spinner animation="border" variant="primary" /> Searching...
           </div>
         )} */}
-      <ProjectList
+      <Projects
         items={project}
         repository={repository}
-        word={word}
         directWord={directWord}
       />
     </div>
   );
 };
 
-export default AdvancedFilterController;
+export default AdvancedFilterList;

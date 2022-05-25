@@ -19,9 +19,7 @@ const Filter = (props) => {
   const [licenseTitle, setLicenseTitle] = useState("Select License");
   const [dateTracker, setDateTracker] = useState();
   const [endDateTracker, setEndDateTracker] = useState();
-  const [greyOut, setGreyOut] = useState()
-  const repository = props.repository;
-  const defaultMin = 0;
+
   //const filteredSearchTrigger = props.filteredSearchTrigger;
 
   //these functions handle the what happens when new value is selected from menu
@@ -87,15 +85,12 @@ const Filter = (props) => {
   function filteredSearchTrigger(event) {
     props.filteredSearchTrigger(event);
   }
-  const handleNumDownloads = (e)=>
-  {
+  const handleNumDownloads = (e) => {
     props.downloads(e);
-  }
-  const handleMaxNumOfDownloads = (e)=>
-  {
+  };
+  const handleMaxNumOfDownloads = (e) => {
     props.downloads(e);
-  }
-  
+  };
 
   return (
     /*********************filter modal**********************/
@@ -144,7 +139,12 @@ const Filter = (props) => {
                       <h4>Language</h4>
                       <DropdownButton
                         id="dropdown-item-button"
-                        disabled ={(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         title={languageTitle}
                         onSelect={handleLanguageSelect}
                       >
@@ -206,7 +206,12 @@ const Filter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onChange={handleForksCount}
                         variant={"primary"}
                         size="sm"
@@ -218,7 +223,12 @@ const Filter = (props) => {
                       <h5>max:</h5>
                       <InputSpinner
                         type={"natural"}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         min={0}
                         onChange={handleMaxForksCount}
                         variant={"primary"}
@@ -231,7 +241,12 @@ const Filter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onChange={handleOpenIssuesCount}
                         variant={"primary"}
                         size="sm"
@@ -242,18 +257,27 @@ const Filter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onChange={handleMaxOpenIssuesCount}
                         variant={"primary"}
                         size="sm"
                       />
                     </Col>
-
                     <Col md="4" className="col-example">
                       <DropdownButton
                         id="dropdown-item-button"
                         title={licenseTitle}
-                        disabled ={(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onSelect={handleLicenseSelect}
                       >
                         <Dropdown.Item
@@ -314,8 +338,6 @@ const Filter = (props) => {
                     {/* <Col md="4">
                       <h4>Downloads</h4>
                     </Col> */}
-
-                   
                   </Row>
                   <Row>
                     <Col md="2" className="col-example">
@@ -324,7 +346,12 @@ const Filter = (props) => {
                         type={"natural"}
                         min={0}
                         onChange={handleStargazersCount}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         variant={"primary"}
                         size="sm"
                       />
@@ -335,7 +362,12 @@ const Filter = (props) => {
                         type={"natural"}
                         min={0}
                         onChange={handleMaxStargazersCount}
-                        disabled = {(props.repository === "GitHub"|| props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         variant={"primary"}
                         size="sm"
                       />
@@ -346,7 +378,12 @@ const Filter = (props) => {
                         type={"natural"}
                         min={0}
                         onChange={handleWatchersCount}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         variant={"primary"}
                         size="sm"
                       />
@@ -357,7 +394,12 @@ const Filter = (props) => {
                         type={"natural"}
                         min={0}
                         onChange={handleMaxWatchersCount}
-                        disabled = {(props.repository === "GitHub" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "GitHub" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         variant={"primary"}
                         size="sm"
                       />
@@ -384,7 +426,6 @@ const Filter = (props) => {
                         size="sm"
                       />
                     </Col> */}
-
                   </Row>
                   <Row>
                     <Col md="4">
@@ -396,14 +437,19 @@ const Filter = (props) => {
                     </Col>
                   </Row>
                   <Row>
-                  <Col md="2" className="col-example">
+                    <Col md="2" className="col-example">
                       <h5>min:</h5>
                       <InputSpinner
                         type={"natural"}
                         min={0}
                         onChange={handleNumOfRatings}
                         variant={"primary"}
-                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "MATC" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         size="sm"
                       />
                     </Col>
@@ -413,7 +459,12 @@ const Filter = (props) => {
                         type={"natural"}
                         min={0}
                         onChange={handleMaxNumOfRatings}
-                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "MATC" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         variant={"primary"}
                         size="sm"
                       />
@@ -423,7 +474,12 @@ const Filter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "MATC" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onChange={handleNumOfComments}
                         variant={"primary"}
                         size="sm"
@@ -434,14 +490,19 @@ const Filter = (props) => {
                       <InputSpinner
                         type={"natural"}
                         min={0}
-                        disabled = {(props.repository === "MATC" || props.repository === "All") ? false : true}
+                        disabled={
+                          props.repository === "MATC" ||
+                          props.repository === "All"
+                            ? false
+                            : true
+                        }
                         onChange={handleMaxNumOfComments}
                         variant={"primary"}
                         size="sm"
                       />
                     </Col>
 
-                     <Col md="4">
+                    <Col md="4">
                       <Button
                         className="search-button"
                         variant="contained"
@@ -450,8 +511,7 @@ const Filter = (props) => {
                       >
                         Filtered Search
                       </Button>
-                    </Col>  
-                  
+                    </Col>
                   </Row>
                 </Container>
               </div>
