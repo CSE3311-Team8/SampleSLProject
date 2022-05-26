@@ -1,152 +1,148 @@
 .App h4 {
-    color: #7ad5ff;
-    margin-bottom: 5%;
-  }
-  .App h5 {
-    color: #7ad5ff;
-  }
+  color: #7ad5ff;
+  margin-bottom: 5%;
+}
+.App h5 {
+  color: #7ad5ff;
+}
 
 .preview p {
-    font-size: 18px;
-  
-    color: #7ad5ff;
-    font-weight: bold;
-    margin-top: 1%;
-    margin-bottom: 4%;
-  }
-  
-  .preview h1 {
-    font-size: 16px;
-    color: #67cfff;
-    font-weight: bold;
-  }
-  
-  div.a {
-   
-    font-size: 8px;
-    color: #67cfff;
-  
-    text-decoration: underline;
-    text-align: center;
-  }
-  td.ratings {
-    font-weight: bold;
-    font-size: 16px;
-    color: #67cfff;
-  }
-  
-  td.date-created {
-    font-weight: bold;
-    font-size: 16px;
-    color: #67cfff;
-    text-align: center;
-  }
-  td.date-updated {
-    font-weight: bold;
-    font-size: 16px;
-    color: #67cfff;
-    text-align: center;
-  }
-  
-  td.name {
-    font-weight: bold;
-    font-size: 16px;
-    color: #67cfff;
-    text-align: center;
-  }
-  
-  th.header {
-    font-weight: bold;
-    font-size: 16px;
-    color: #67cfff;
-    text-align: center;
-    width: 20%;
-  }
-  div.preview {
-    margin-bottom: 6%;
-  }
-  
-  div.date.row {
-    margin-top: 1%;
-  }
-  
+  font-size: 18px;
 
-  
-  div.dropdown {
-    text-align: center;
-  }
-  
-  div.search.row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2%;
-  }
-  div.col-example.col-md-2 {
-    text-align: center;
-  
-    color: #67cfff;
-    border: 2px #345beb;
-  
-    margin-bottom: 4%;
-  }
-  
-  div.search.row.dropdown {
-    pointer-events: none;
-  }
-  
-  Table {
-    border-radius: 1%;
-    background-color: rgb(25, 49, 73);
-  
-    border: 2px #58f9ff;
-    width: auto;
-    height: auto;
-  }
-  
-  div.description.row {
-    width: auto;
-  }
-  
-  td.description {
-    text-align: center;
-  }
-  td.license {
-    text-align: center;
-  }
-  td.watchers {
-    text-align: center;
-  }
-  td.language {
-    text-align: center;
-  }
-  td.forks {
-    text-align: center;
-  }
-  
-  td.model-files {
-    overflow: hidden;
-    word-wrap: break-word;
-  }
-  
-  div.repositories.col-md-11 {
-    text-align: left;
-  }
-  
-  div.col-md-1 {
-    text-align: right;
-  }
+  color: #7ad5ff;
+  font-weight: bold;
+  margin-top: 1%;
+  margin-bottom: 4%;
+}
 
-  div.col-md-4 {
-    text-align: center;
-    color: #67cfff;
-    font-size: medium;
-  }
-  a {
-    text-align: center;
-    color: #67cfff;
-  }
-  td.url {
-    text-align: center;
-  }
-  
+.preview h1 {
+  font-size: 16px;
+  color: #67cfff;
+  font-weight: bold;
+}
+
+div.a {
+  font-size: 8px;
+  color: #67cfff;
+
+  text-decoration: underline;
+  text-align: center;
+}
+td.ratings {
+  font-weight: bold;
+  font-size: 16px;
+  color: #67cfff;
+}
+
+td.date-created {
+  font-weight: bold;
+  font-size: 16px;
+  color: #67cfff;
+  text-align: center;
+}
+td.date-updated {
+  font-weight: bold;
+  font-size: 16px;
+  color: #67cfff;
+  text-align: center;
+}
+
+td.name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #67cfff;
+  text-align: center;
+}
+
+th.header {
+  font-weight: bold;
+  font-size: 16px;
+  color: #67cfff;
+  text-align: center;
+  width: 20%;
+}
+div.preview {
+  margin-bottom: 6%;
+}
+
+div.date.row {
+  margin-top: 1%;
+}
+
+div.dropdown {
+  text-align: center;
+}
+
+div.search.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+div.col-example.col-md-2 {
+  text-align: center;
+
+  color: #67cfff;
+  border: 2px #345beb;
+
+  margin-bottom: 4%;
+}
+
+div.search.row.dropdown {
+  pointer-events: none;
+}
+
+Table {
+  border-radius: 1%;
+  background-color: rgb(25, 49, 73);
+
+  border: 2px #58f9ff;
+  width: auto;
+  height: auto;
+}
+
+div.description.row {
+  width: auto;
+}
+
+td.description {
+  text-align: center;
+}
+td.license {
+  text-align: center;
+}
+td.watchers {
+  text-align: center;
+}
+td.language {
+  text-align: center;
+}
+td.forks {
+  text-align: center;
+}
+
+td.model-files {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+div.repositories.col-md-11 {
+  text-align: left;
+}
+
+div.col-md-1 {
+  text-align: right;
+}
+
+div.col-md-4 {
+  text-align: center;
+  color: #67cfff;
+  font-size: medium;
+}
+a {
+  text-align: center;
+  color: #67cfff;
+}
+td.url {
+  text-align: center;
+}

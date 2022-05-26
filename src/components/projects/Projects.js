@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './Projects.css';
+import "./Projects.css";
 
 const Projects = (props) => {
   const [visible, setVisible] = useState(10);

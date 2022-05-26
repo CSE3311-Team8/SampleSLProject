@@ -1,59 +1,59 @@
 div.filtered-search.col-md-4 {
-    margin-top: 4%;
-    text-align: right;
-  }
-  
-  div.closeButton {
-    text-align: right;
-  }
-  
-  h1 {
-    color: #345beb;
-    text-align: center;
-  }
+  margin-top: 4%;
+  text-align: right;
+}
+
+div.closeButton {
+  text-align: right;
+}
+
+h1 {
+  color: #345beb;
+  text-align: center;
+}
 
 div.modalBackground {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    margin-bottom: 3%;
-  }
-  .modalBackground {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modalContainer {
-    width: 82%;
-  
-    border-radius: 1%;
-  
-    background-color: rgb(8, 17, 26);
-    box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
-    display: flex;
-    flex-direction: column;
-  
-    padding: 1%;
-  }
-  div.closeButton button {
-    background-color: rgb(177, 6, 6);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  input#typeNumber.form-control {
-    background-color: #dde6ee;
-  }
-  div.form-outline {
-    background-color: #dde6ee;
-  }
-  div.react-datepicker_input-container {
-    background-color: #dde6ee;
-  }
+  margin-bottom: 3%;
+}
+.modalBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainer {
+  width: 82%;
 
-  div.col-example.col-md-4 {
-    margin-top: 1%;
-    margin-bottom: 2%;
-    font-size: large;
-    font-weight: bold;
-    color: #67cfff;
-  }
+  border-radius: 1%;
+
+  background-color: rgb(8, 17, 26);
+  box-shadow: rgba(0, 0, 0, 0) 0% 1% 2%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 1%;
+}
+div.closeButton button {
+  background-color: rgb(177, 6, 6);
+}
+
+input#typeNumber.form-control {
+  background-color: #dde6ee;
+}
+div.form-outline {
+  background-color: #dde6ee;
+}
+div.react-datepicker_input-container {
+  background-color: #dde6ee;
+}
+
+div.col-example.col-md-4 {
+  margin-top: 1%;
+  margin-bottom: 2%;
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}

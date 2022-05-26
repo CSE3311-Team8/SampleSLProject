@@ -6,7 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "@mui/material";
 import NumericInput from "react-numeric-input";
 import InputSpinner from "react-bootstrap-input-spinner";
-import './AdvancedFilter.css';
+import "./AdvancedFilter.css";
 //import { eventListeners } from "@popperjs/core";
 
 NumericInput.style.input.color = "blue";

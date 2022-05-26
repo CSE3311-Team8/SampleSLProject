@@ -21,7 +21,7 @@ import FilterList from "../../lists/FilterList";
 import "react-datepicker/dist/react-datepicker.css";
 //import awsExports from "./aws-exports";
 import AdvancedFilterList from "../../lists/AdvancedFilterList";
-import './SearchBar.css';
+import "./SearchBar.css";
 //Amplify.configure(awsExports);
 
 function SearchBar() {
