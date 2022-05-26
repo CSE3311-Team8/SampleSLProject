@@ -1,6 +1,6 @@
 /* src/App.js */
 import React from "react";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/search_bar/SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 

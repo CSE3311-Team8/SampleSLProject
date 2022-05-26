@@ -10,18 +10,18 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import AdvancedFilter from "./AdvancedFilter";
+import AdvancedFilter from "../advanced_filter/AdvancedFilter";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import DateObject from "react-date-object";
 import { Button } from "@mui/material";
-import SearchList from "../lists/SearchList";
-import Filter from "./Filter";
-import FilterList from "../lists/FilterList";
+import SearchList from "../../lists/SearchList";
+import Filter from "../filter/Filter";
+import FilterList from "../../lists/FilterList";
 import "react-datepicker/dist/react-datepicker.css";
 //import awsExports from "./aws-exports";
-import AdvancedFilterList from "../lists/AdvancedFilterList";
-
+import AdvancedFilterList from "../../lists/AdvancedFilterList";
+import './SearchBar.css';
 //Amplify.configure(awsExports);
 
 function SearchBar() {

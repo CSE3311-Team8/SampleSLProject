@@ -1,0 +1,47 @@
+.App {
+  max-width: auto;
+}
+html {
+  background-image: url(./1642478.jpg);
+}
+div#root {
+  background-color: #000000;
+}
+.App input {
+  font-size: "16px";
+
+  color: #67cfff;
+}
+
+.App h2 {
+  margin-top: 1%;
+
+  text-align: center;
+  font-size: 60px;
+  color: #345beb;
+  margin-bottom: 5%;
+}
+button.loader {
+  margin-bottom: 10%;
+}
+
+input.form-control {
+  background-color: #151518;
+}
+input {
+  background-color: #151518;
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}
+
+input.form-control {
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}
+div.alert-spinner {
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}

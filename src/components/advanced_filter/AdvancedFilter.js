@@ -6,6 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "@mui/material";
 import NumericInput from "react-numeric-input";
 import InputSpinner from "react-bootstrap-input-spinner";
+import './AdvancedFilter.css';
 //import { eventListeners } from "@popperjs/core";
 
 NumericInput.style.input.color = "blue";
@@ -138,7 +139,7 @@ const AdvancedFilter = (props) => {
                       <h4>Algebraic Count </h4>
                     </Col>
                     <Col md="4">
-                      <h4>Inclue/Exclude</h4>
+                      <h4>Include/Exclude</h4>
                     </Col>
                   </Row>
                   <Row className="date">
@@ -356,7 +357,7 @@ const AdvancedFilter = (props) => {
                       <h4>Hierarchy Depth</h4>
                     </Col>
                     <Col md="4">
-                      <h4>Unique Model Referece</h4>
+                      <h4>Unique Model Reference</h4>
                     </Col>
                     <Col md="4">
                       <h4>Solver Type</h4>

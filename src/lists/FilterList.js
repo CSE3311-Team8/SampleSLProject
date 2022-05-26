@@ -3,7 +3,7 @@ import GitHubFilterFetch from "../useFetchHooks/GitHubFilterFetch";
 import MATCFilterFetch from "../useFetchHooks/MATCFilterFetch";
 import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Projects from "../components/Projects";
+import Projects from "../components/projects/Projects";
 //Hosts the lists of projects matching search word
 const FilterList = (props) => {
   const repository = props.repository;

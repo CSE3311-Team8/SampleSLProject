@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import NumericInput from "react-numeric-input";
 import InputSpinner from "react-bootstrap-input-spinner";
+import './Filter.css';
 //import { eventListeners } from "@popperjs/core";
 
 NumericInput.style.input.color = "blue";
