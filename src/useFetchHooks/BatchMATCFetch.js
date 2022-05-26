@@ -1,5 +1,4 @@
-import { ComponentPropsToStylePropsMap } from "@aws-amplify/ui-react";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import { useState } from "react";
 import { useEffect } from "react";
 ///import pkg from "aws-sdk";
@@ -11,18 +10,15 @@ import { useEffect } from "react";
 //const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
 
 const BatchMATCFetch = (ids, advancedFilterState) => {
-  const pageLimit = 40;
-  const pageLimitAll = 40;
-  const [page, setPage] = useState(1);
   const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [nextToken, setNextToken] = useState("");
-  const [nextTokenHolder, setNextTokenHolder] = useState("");
-  const [stateTracker, setStateTracker] = useState("");
-  var [project, setProject] = useState([]);
-  var [projectId, setProjectId] = useState(0); //collects projecst as they are found
-  const [filterTracker, setFilterTracker] = useState("");
-  const [firstFetch, setFirstFetch] = useState(false);
+  // const [nextTokenHolder, setNextTokenHolder] = useState("");
+  // const [stateTracker, setStateTracker] = useState("");
+  // var [project, setProject] = useState([]);
+  // var [projectId, setProjectId] = useState(0); //collects projecst as they are found
+  // const [filterTracker, setFilterTracker] = useState("");
+  // const [firstFetch, setFirstFetch] = useState(false);
   const IDs = [];
   var [holder, setHolder] = useState([]);
 
@@ -40,7 +36,7 @@ const BatchMATCFetch = (ids, advancedFilterState) => {
 
     //third condition tracks the filter button to clear tokens when when looking for
     //same word with different parameters, e.g. more comments, more stargazers
- 
+
     setLoading(true);
     //this tracks the incoming word for comparison with next request
     //if the incoming query is different than this state,
@@ -77,7 +73,7 @@ const BatchMATCFetch = (ids, advancedFilterState) => {
           const projectData = await API.graphql(
             graphqlOperation(getMATCProject)
           );
-            //console.log(projectData.data.getMATCProject)
+          //console.log(projectData.data.getMATCProject)
           setHolder((holder = holder.concat(projectData.data.getMATCProject)));
         }
 
@@ -88,9 +84,9 @@ const BatchMATCFetch = (ids, advancedFilterState) => {
         console.log("End of records: ", err);
       }
       //set projects for display
-      
+
       if (holder.length !== 0) {
-        console.log(ids)
+        console.log(ids);
         console.log(holder);
       }
     }

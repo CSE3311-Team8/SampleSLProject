@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import DatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import NumericInput from "react-numeric-input";
 import InputSpinner from "react-bootstrap-input-spinner";
+import './AdvancedFilter.css';
 //import { eventListeners } from "@popperjs/core";
 
 NumericInput.style.input.color = "blue";
@@ -15,18 +15,21 @@ NumericInput.style.input.color = "blue";
 //props here are the word in the search bar and the repo selected
 
 const AdvancedFilter = (props) => {
-  const [includeExcludeTitle, setIncludeExcludeTitle] = useState("Select Include/Exclude");
-  const [targetHardwareTitle, setTargetHardwareTitle] = useState("Select Target Hardware");
+  const [includeExcludeTitle, setIncludeExcludeTitle] = useState(
+    "Select Include/Exclude"
+  );
+  const [targetHardwareTitle, setTargetHardwareTitle] = useState(
+    "Select Target Hardware"
+  );
   const [solverTypeTitle, setSolverTypeTitle] = useState("Select Solver Type");
-  const [simulationModeTitle, setSimulationModeTitle] = useState("Select Simulation Mode");
+  const [simulationModeTitle, setSimulationModeTitle] = useState(
+    "Select Simulation Mode"
+  );
 
   //console.log(props.advancedFilterState);
   //these functions handle the what happens when new value is selected from menu
 
-
   function handleBlockCount(event) {
-   
-
     props.blockCount(event);
   }
   function handleMaxBlockCount(event) {
@@ -46,8 +49,6 @@ const AdvancedFilter = (props) => {
     props.maxSubsysCount(event);
   }
   function handleSFunctionCount(event) {
-    
-
     props.uniqueSFunctionCount(event);
   }
   function handleMaxSFunctionCount(event) {
@@ -138,7 +139,7 @@ const AdvancedFilter = (props) => {
                       <h4>Algebraic Count </h4>
                     </Col>
                     <Col md="4">
-                      <h4>Inclue/Exclude</h4>
+                      <h4>Include/Exclude</h4>
                     </Col>
                   </Row>
                   <Row className="date">
@@ -193,10 +194,10 @@ const AdvancedFilter = (props) => {
                           Blank
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Blank" as="button">
-                        Blank
+                          Blank
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Blank" as="button">
-                        Blank
+                          Blank
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
@@ -262,58 +263,91 @@ const AdvancedFilter = (props) => {
                         onSelect={handleTargetHardware}
                       >
                         <Dropdown.Item eventKey="32-bit Generic" as="button">
-                        16-bit Generic
+                          16-bit Generic
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="16-bit Generic" as="button">
-                        32-bit Generic
+                          32-bit Generic
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="ARM Compatible->ARM Cortex" as="button">
-                        ARM Compatible-ARM Cortex
+                        <Dropdown.Item
+                          eventKey="ARM Compatible->ARM Cortex"
+                          as="button"
+                        >
+                          ARM Compatible-ARM Cortex
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="ARM Compatible->Cortex - M4" as="button">
-                        ARM Compatible-Cortex - M4
+                        <Dropdown.Item
+                          eventKey="ARM Compatible->Cortex - M4"
+                          as="button"
+                        >
+                          ARM Compatible-Cortex - M4
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Atmel->AVR" as="button">
-                        Atmel-AVR
+                          Atmel-AVR
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Custom Processor->MATLAB Host Computer" as="button">
-                        Custom Processor-MATLAB Host Computer
+                        <Dropdown.Item
+                          eventKey="Custom Processor->MATLAB Host Computer"
+                          as="button"
+                        >
+                          Custom Processor-MATLAB Host Computer
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Freescale->32-bit PowerPC" as="button">
-                        Freescale-32-bit PowerPC
+                        <Dropdown.Item
+                          eventKey="Freescale->32-bit PowerPC"
+                          as="button"
+                        >
+                          Freescale-32-bit PowerPC
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Generic->16-bit Embedded Processor" as="button">
-                        Generic-16-bit Embedded Processor
+                        <Dropdown.Item
+                          eventKey="Generic->16-bit Embedded Processor"
+                          as="button"
+                        >
+                          Generic-16-bit Embedded Processor
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Freescale->32-bit PowerPC" as="button">
-                        Freescale-32-bit PowerPC
+                        <Dropdown.Item
+                          eventKey="Freescale->32-bit PowerPC"
+                          as="button"
+                        >
+                          Freescale-32-bit PowerPC
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Generic->32-bit x86 compatible" as="button">
-                        Generic-32-bit x86 compatible
+                        <Dropdown.Item
+                          eventKey="Generic->32-bit x86 compatible"
+                          as="button"
+                        >
+                          Generic-32-bit x86 compatible
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Intel->x86-64 (Windows64)" as="button">
-                        Intel-x86-64 (Windows64)
+                        <Dropdown.Item
+                          eventKey="Intel->x86-64 (Windows64)"
+                          as="button"
+                        >
+                          Intel-x86-64 (Windows64)
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Intel->x86-64 (Linux 64)" as="button">
-                        Intel-x86-64 (Linux 64)
+                        <Dropdown.Item
+                          eventKey="Intel->x86-64 (Linux 64)"
+                          as="button"
+                        >
+                          Intel-x86-64 (Linux 64)
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="MATLAB Host" as="button">
-                        MATLAB Host
+                          MATLAB Host
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="N/A" as="button">
-                        N/A
+                          N/A
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="STMicroelectronics->STM32 32-bit Cortex-M" as="button">
-                        STMicroelectronics-STM32 32-bit Cortex-M
+                        <Dropdown.Item
+                          eventKey="STMicroelectronics->STM32 32-bit Cortex-M"
+                          as="button"
+                        >
+                          STMicroelectronics-STM32 32-bit Cortex-M
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="Texas Instruments->C6000" as="button">
-                        Texas Instruments-C6000
+                        <Dropdown.Item
+                          eventKey="Texas Instruments->C6000"
+                          as="button"
+                        >
+                          Texas Instruments-C6000
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Unspecified" as="button">
-                        Unspecified
+                          Unspecified
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Specified" as="button">
-                        Specified
+                          Specified
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
@@ -323,7 +357,7 @@ const AdvancedFilter = (props) => {
                       <h4>Hierarchy Depth</h4>
                     </Col>
                     <Col md="4">
-                      <h4>Unique Model Referece</h4>
+                      <h4>Unique Model Reference</h4>
                     </Col>
                     <Col md="4">
                       <h4>Solver Type</h4>
@@ -377,13 +411,13 @@ const AdvancedFilter = (props) => {
                         onSelect={handleSolverType}
                       >
                         <Dropdown.Item eventKey="Fixed-step" as="button">
-                        Fixed-step
+                          Fixed-step
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="Variable-step" as="button">
-                        Variable-step
+                          Variable-step
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="N/A" as="button">
-                        N/A
+                          N/A
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
@@ -447,37 +481,39 @@ const AdvancedFilter = (props) => {
                         onSelect={handleSimulationMode}
                       >
                         <Dropdown.Item eventKey="N/A" as="button">
-                         N/A
+                          N/A
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="accelerator" as="button">
-                        accelerator
+                          accelerator
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="external" as="button">
-                        external
+                          external
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="normal" as="button">
-                        normal
+                          normal
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="processor-in-the-loop (pil)" as="button">
-                        processor-in-the-loop (pil)
+                        <Dropdown.Item
+                          eventKey="processor-in-the-loop (pil)"
+                          as="button"
+                        >
+                          processor-in-the-loop (pil)
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="rapid-accelerator" as="button">
-                        rapid-accelerator
+                          rapid-accelerator
                         </Dropdown.Item>
                       </DropdownButton>
                     </Col>
                   </Row>
                   <Row>
-                  <Col md="12" className="advanced-search">
-                    <Button
-                      className="search-button"
-                      variant="contained"
-                      size="medium"
-                      onClick={advancedfilteredSearchTrigger}
-                    
-                    >
-                      Advanced Search
-                    </Button>
+                    <Col md="12" className="advanced-search">
+                      <Button
+                        className="search-button"
+                        variant="contained"
+                        size="medium"
+                        onClick={advancedfilteredSearchTrigger}
+                      >
+                        Advanced Search
+                      </Button>
                     </Col>
                   </Row>
                 </Container>

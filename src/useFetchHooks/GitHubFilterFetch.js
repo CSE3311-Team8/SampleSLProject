@@ -1,4 +1,4 @@
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import { useState } from "react";
 import { useEffect } from "react";
 ///import pkg from "aws-sdk";
@@ -31,12 +31,8 @@ const GitHubFilterFetch = (
   max_number_of_ratings,
   setLoader,
   trigger,
-  triggerState,
- 
+  triggerState
 ) => {
-  const pageLimit = 40;
-  const pageLimitAll = 40;
-  const [page, setPage] = useState(1);
   const [data, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [nextToken, setNextToken] = useState("");
@@ -178,12 +174,11 @@ const GitHubFilterFetch = (
       }
       //request projects
       fetchProjects();
-      
     }
     setLoading(false);
     setLoader(false);
   }, [nextToken, repository, filterState]);
-  
+
   return { data, isLoading };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import { useState } from "react";
 import { useEffect } from "react";
 ///import pkg from "aws-sdk";
@@ -9,42 +9,31 @@ import { useEffect } from "react";
 /****include this package when using standard SQL SELECT statement requests******/
 //const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
 
-//  const repository = props.repository;
-
-const AdvancedMATCFilterFetch = (
+const MATCFilterFetch = (
   repository,
   word,
-  blockCount,
-  maxBlockCount,
-  algebraicCount,
-  maxAlgebraicCount,
-  subsysCount,
-  maxSubsysCount,
-  uniqueSFunctionCount,
-  maxUniqueSFunctionCount,
-  hierarchyDepth,
-  maxHierarchyDepth,
-  uniqueModelReference,
-  advancedFilterState,
-  maxUniqueModelReference,
-  libraryLinkedCount,
-  maxLibraryLinkedCount,
-  cyclomaticComplexity,
-  maxCyclomaticComplexity,
-  includeExclude,
-  targetHardware,
-  solverType,
-  simulationMode,
-  directWord,
+  start_date,
+  end_date,
+  language,
+  license,
+  downloads,
+  open_issues_count,
+  stargazers_count,
+  number_of_comments,
+  watchers_count,
+  number_of_ratings,
+  filterState,
+  maxDownloads,
+  max_open_issues_count,
+  max_stargazers_count,
+  max_watchers_count,
+  max_number_of_comments,
+  max_number_of_ratings,
   setLoader,
   trigger,
   triggerState
 ) => {
-  /**********************adjust triggers in app.js for advanced filter only so no conflict with FilterFetch occurss********************************/
-  const pageLimit = 40;
-  const pageLimitAll = 40;
-  const [page, setPage] = useState(1);
-  const [ids, setItems] = useState([]);
+  const [datas, setItems] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [nextToken, setNextToken] = useState("");
   const [nextTokenHolder, setNextTokenHolder] = useState("");
@@ -56,57 +45,62 @@ const AdvancedMATCFilterFetch = (
 
   //query and fields requested
   const listMATCProjects = /* GraphQL */ `
-    query listMATCModels {
-      listMATCModels(
-        filter: {
-          Agg_SubSystem_count: { ge: ${subsysCount}, le: ${maxSubsysCount} }
-          Alge_loop_Cnt: { ge: ${algebraicCount}, le: ${maxAlgebraicCount} }
-          CComplexity: { ge: ${cyclomaticComplexity}, le: ${maxCyclomaticComplexity} }
-          Hierarchy_depth: { ge: ${hierarchyDepth}, le: ${maxHierarchyDepth} }
-          unique_mdl_ref_count: { ge: ${uniqueModelReference}, le: ${uniqueModelReference} }
-          unique_sfun_count: { ge: ${uniqueSFunctionCount}, le: ${maxUniqueSFunctionCount} }
-          LibraryLinked_Count: {ge: ${libraryLinkedCount}, le: ${maxLibraryLinkedCount} }
-          target_hw: {contains: "${targetHardware}"}
-          solver_type: {contains: "${solverType}"}
-          sim_mode: {contains: "${simulationMode}"}
-        }
-      ) {
-        items {
-          FILE_ID
-          file_path
-          Model_Name
-        }
-        nextToken
+  query listMATCProjects{
+    listMATCProjects(limit: 250, filter: {
+      summary: {contains: "${word}"}, 
+      no_of_ratings: {ge: ${number_of_ratings}, le: ${max_number_of_ratings}}, 
+      no_of_comments: {ge: ${number_of_comments}, le: ${max_number_of_comments}}, 
+      published: {ge: "${start_date}", le: "${end_date}"}}){
+      items {
+      	id
+        author_name
+        author_uri
+        average_rating
+        content
+        download_link
+        downloads
+        license
+        mathworks_url
+        model_files
+        no_of_comments
+        no_of_ratings
+        num_model_files
+        published
+        summary
+        title
+        updated
       }
+      nextToken
     }
-  `;
+  }
+`;
 
   const listMATCProjectsToken = /* GraphQL */ `
-    query listMATCModels {
-      listMATCModels(
-        filter: {
-          Agg_SubSystem_count: { ge: ${subsysCount}, le: ${maxSubsysCount} }
-          Alge_loop_Cnt: { ge: ${algebraicCount}, le: ${maxAlgebraicCount} }
-          CComplexity: { ge: ${cyclomaticComplexity}, le: ${maxCyclomaticComplexity} }
-          Hierarchy_depth: { ge: ${hierarchyDepth}, le: ${maxHierarchyDepth} }
-          unique_mdl_ref_count: { ge: ${uniqueModelReference}, le: ${uniqueModelReference} }
-          unique_sfun_count: { ge: ${uniqueSFunctionCount}, le: ${maxUniqueSFunctionCount} }
-          LibraryLinked_Count: {ge: ${libraryLinkedCount}, le: ${maxLibraryLinkedCount} }
-          target_hw: {contains: "${targetHardware}"}
-          solver_type: {contains: "${solverType}"}
-          sim_mode: {contains: "${simulationMode}"}
-        }
-        nextToken: "${nextToken}"
-      ) {
-        items {
-          FILE_ID
-          file_path
-          Model_Name
-        }
-        nextToken
-      }
+query listMATCProjects{
+  listMATCProjects(limit: 250, filter: {summary: {contains: "${word}"}, no_of_ratings: {ge: ${number_of_ratings}, le: ${max_number_of_ratings}}, no_of_comments: {ge: ${number_of_comments}, le: ${max_number_of_comments}}, published: {ge: "${start_date}", le: "${end_date}"}}, nextToken: "${nextToken}"){
+    items {
+      id
+      author_name
+      author_uri
+      average_rating
+      content
+      download_link
+      downloads
+      license
+      mathworks_url
+      model_files
+      no_of_comments
+      no_of_ratings
+      num_model_files
+      published
+      summary
+      title
+      updated
     }
-  `;
+    nextToken
+  }
+}
+`;
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -150,16 +144,16 @@ const AdvancedMATCFilterFetch = (
             const projectData = await API.graphql(
               graphqlOperation(listMATCProjects)
             );
-            const projects = projectData.data.listMATCModels.items;
+            const projects = projectData.data.listMATCProjects.items;
             //if there are no current projects to display or
             //if the list of projecst to display is less than 20
             //stack projects in holder until full and set the last place scanned
             if (holder1.length === 0 || holder1.length < 20) {
               setHolder1((holder1 = holder1.concat(projects))); //colledt projects
-              setNextToken(projectData.data.listMATCModels.nextToken); //last place scanned
+              setNextToken(projectData.data.listMATCProjects.nextToken); //last place scanned
             } else {
               //if the project holder is full, set the last token/place scanned
-              setNextTokenHolder(projectData.data.listMATCModels.nextToken);
+              setNextTokenHolder(projectData.data.listMATCProjects.nextToken);
               //setLoader(true);
             }
           } else if (firstFetch === true) {
@@ -169,18 +163,18 @@ const AdvancedMATCFilterFetch = (
             const projectData = await API.graphql(
               graphqlOperation(listMATCProjectsToken)
             );
-            const projects = projectData.data.listMATCModels.items;
+            const projects = projectData.data.listMATCProjects.items;
 
             //if there are no current projects to display or
             //if the list of projecst to display is less than 20
             //stack projects in holder until full and set the last place scanned
             if (holder1.length === 0 || holder1.length < 11) {
               setHolder1((holder1 = holder1.concat(projects))); //colledt projects
-              setNextToken(projectData.data.listMATCModels.nextToken); //last place scanned
+              setNextToken(projectData.data.listMATCProjects.nextToken); //last place scanned
               //setLoader(true);
             } else {
               //if the project holder is full, set the last token/place scanned
-              setNextTokenHolder(projectData.data.listMATCModels.nextToken);
+              setNextTokenHolder(projectData.data.listMATCProjects.nextToken);
             }
           }
         } catch (err) {
@@ -188,16 +182,15 @@ const AdvancedMATCFilterFetch = (
         }
         //set projects for display
         setItems(holder1);
-
       }
       //request projects
       fetchProjects();
     }
     setLoading(false);
     setLoader(false);
-  }, [nextToken, repository, advancedFilterState]);
+  }, [nextToken, repository, filterState]);
 
-  return { ids, isLoading };
+  return { datas, isLoading };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //     /*************This method uses standard SQL SELECT statements, it returns a dynamobd ojbect*/
@@ -272,4 +265,4 @@ const AdvancedMATCFilterFetch = (
   //   return { isLoading, datas };
 };
 
-export default AdvancedMATCFilterFetch;
+export default MATCFilterFetch;

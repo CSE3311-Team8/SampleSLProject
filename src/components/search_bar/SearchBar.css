@@ -1,0 +1,25 @@
+
+button.loader {
+  margin-bottom: 10%;
+}
+
+input.form-control {
+  background-color: #151518;
+}
+input {
+  background-color: #151518;
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}
+
+input.form-control {
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}
+div.alert-spinner {
+  font-size: large;
+  font-weight: bold;
+  color: #67cfff;
+}
